@@ -3,10 +3,12 @@
 
 format: jb-book
 root: intro.md
-parts:
-  - caption: Hasselmann Model
-    chapters:
+#parts:
+#  - caption: Hasselmann Model
+chapters:
+  - file: content/Hasselmann/Hasselmann
+    sections:
     - file: content/Hasselmann/1_Mathematical_Prelims
     - file: content/Hasselmann/2_Hasselmann_model
     - file: content/Hasselmann/3_Simulating_Stochastic_Processes
-    - file: content/Hasselmann/4_Theory
+    -  file: content/Hasselmann/4_Theory

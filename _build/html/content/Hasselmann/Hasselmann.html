@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>1. Mathematical Preliminaries &#8212; SIMLES: Statistical Inference and Machine Learning for Earth Sciences</title>
+    <title>The Hasselmann model &#8212; SIMLES: Statistical Inference and Machine Learning for Earth Sciences</title>
   
   
   
@@ -64,12 +64,12 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'content/Hasselmann/1_Mathematical_Prelims';</script>
-    <link rel="canonical" href="https://cdds-uiuc.github.io/simles-book/content/Hasselmann/1_Mathematical_Prelims.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/Hasselmann/Hasselmann';</script>
+    <link rel="canonical" href="https://cdds-uiuc.github.io/simles-book/content/Hasselmann/Hasselmann.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="2. The Hasselmann model" href="2_Hasselmann_model.html" />
-    <link rel="prev" title="The Hasselmann model" href="Hasselmann.html" />
+    <link rel="next" title="1. Mathematical Preliminaries" href="1_Mathematical_Prelims.html" />
+    <link rel="prev" title="CDDS Notes" href="../../intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -174,8 +174,8 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="Hasselmann.html">The Hasselmann model</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">1. Mathematical Preliminaries</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">The Hasselmann model</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="1_Mathematical_Prelims.html">1. Mathematical Preliminaries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2_Hasselmann_model.html">2. The Hasselmann model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="3_Simulating_Stochastic_Processes.html">3. Simulating discrete stochastic processes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="4_Theory.html">4. Theoretical Solutions</a></li>
@@ -235,7 +235,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://mybinder.org/v2/gh/cdds-uiuc/note-book/master?urlpath=lab/tree/content/Hasselmann/1_Mathematical_Prelims.ipynb" target="_blank"
+      <li><a href="https://mybinder.org/v2/gh/cdds-uiuc/note-book/master?urlpath=lab/tree/content/Hasselmann/Hasselmann.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch onBinder"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -253,7 +253,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://colab.research.google.com/github/cdds-uiuc/note-book/blob/master/content/Hasselmann/1_Mathematical_Prelims.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/cdds-uiuc/note-book/blob/master/content/Hasselmann/Hasselmann.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch onColab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -301,7 +301,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/cdds-uiuc/note-book/issues/new?title=Issue%20on%20page%20%2Fcontent/Hasselmann/1_Mathematical_Prelims.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/cdds-uiuc/note-book/issues/new?title=Issue%20on%20page%20%2Fcontent/Hasselmann/Hasselmann.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -331,7 +331,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../_sources/content/Hasselmann/1_Mathematical_Prelims.ipynb" target="_blank"
+      <li><a href="../../_sources/content/Hasselmann/Hasselmann.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -402,9 +402,7 @@ document.write(`
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</label>
+
 </div></div>
       
     </div>
@@ -415,21 +413,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>1. Mathematical Preliminaries</h1>
+    <h1>The Hasselmann model</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions-fourier-transforms">Definitions: Fourier Transforms</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions-spectral-density-covariance">Definitions: Spectral Density &amp; Covariance</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#useful-properties-and-theorems">Useful Properties and Theorems</a></li>
-</ul>
-            </nav>
         </div>
     </div>
 </div>
@@ -439,143 +427,15 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="mathematical-preliminaries">
-<h1>1. Mathematical Preliminaries<a class="headerlink" href="#mathematical-preliminaries" title="Permalink to this heading">#</a></h1>
-<p>Here we will refresh some definitions and properties of Fourier Analysis. The math we use will not be rigurous, but it will be, hopefully, consistent.</p>
-<section id="definitions-fourier-transforms">
-<h2>Definitions: Fourier Transforms<a class="headerlink" href="#definitions-fourier-transforms" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p><strong>The Fourier transform</strong>, and its inverse can be written either in
-terms of frequency <span class="math notranslate nohighlight">\(f\)</span> or angular freuency <span class="math notranslate nohighlight">\(\omega=2\pi f\)</span>. Their definitions are:</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[ \mathscr{F}\left\{ X(t)\right\} =\int_{-\infty}^{+\infty}X(t)e^{-2\pi ift}dt=\tilde{X}\left(f\right)\]</div>
+  <section class="tex2jax_ignore mathjax_ignore" id="the-hasselmann-model">
+<h1>The Hasselmann model<a class="headerlink" href="#the-hasselmann-model" title="Permalink to this heading">#</a></h1>
+<p>This is a set of notes and code examples for simulating and understanding the Hasselmann model.</p>
 <div class="math notranslate nohighlight">
 \[
-\mathscr{F}\left\{ X(t)\right\} =\int_{-\infty}^{+\infty}X(t)e^{-i\omega t}dt=\tilde{X}\left(\omega\right)
+C\frac{dT(t)}{dt}=-\lambda T(t)+F\left(t\right)
 \]</div>
-<div class="math notranslate nohighlight">
-\[
-\mathscr{F}^{-1}\left\{ \tilde{X}\left(f\right)\right\} =\int_{-\infty}^{+\infty}\tilde{X}\left(f\right)e^{2\pi ift}df=X\left(t\right)
-\]</div>
-<div class="math notranslate nohighlight">
-\[
-\mathscr{F}^{-1}\left\{ \tilde{X}\left(\omega\right)\right\} =\frac{1}{2\pi}\int_{-\infty}^{+\infty}\tilde{X}\left(\omega\right)e^{i\omega t}d\omega=X\left(t\right)
-\]</div>
-<ul class="simple">
-<li><p>Unless otherwise noted, we will use <span class="math notranslate nohighlight">\(X\)</span> to denote time-domain functions
-<span class="math notranslate nohighlight">\(X(t)\)</span> and <span class="math notranslate nohighlight">\(\tilde{X}\)</span> to denote frequency-domain functions, <span class="math notranslate nohighlight">\(\tilde{X}\left(f\right)\)</span> or <span class="math notranslate nohighlight">\(\tilde{X}\left(\omega\right)\)</span>. We will use the following notation to denote two quantities related through a Fourier/Inverse Fourier transformation:</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
-X(t)\overset{\mathscr{F}}{\longleftrightarrow}\tilde{X}(f)
-\]</div>
-<ul class="simple">
-<li><p><strong>Nyquist frequency:</strong> for discrete time-series evaluated at
-discrete time points <span class="math notranslate nohighlight">\(t_{i}\)</span> separated by a time step <span class="math notranslate nohighlight">\(\Delta t=t_{i+1}-t_{i}\)</span>,
-the Fourier Transform can only be evaluated at frequencies up to the
-sampling frequency, also called the Nyquist frequency</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
-f_{N}=\frac{1}{2\Delta t}.
-\]</div>
-<p>It is not possible to estimate energy at frequencies higher than the
-Nyquist frequency without more finely resolved data.</p>
-</section>
-<section id="definitions-spectral-density-covariance">
-<h2>Definitions: Spectral Density &amp; Covariance<a class="headerlink" href="#definitions-spectral-density-covariance" title="Permalink to this heading">#</a></h2>
-<p>Wikipedia has some good resources on <a class="reference external" href="https://en.wikipedia.org/wiki/Spectral_density">spectral density</a>.</p>
-<ul class="simple">
-<li><p>The <strong>cross power spectral density</strong> of two variables is:</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
-S_{XY}\left(\omega\right)=\left\langle \tilde{X}\left(\omega\right)\tilde{Y}^{*}\left(\omega\right)\right\rangle =\lim_{T\rightarrow\infty}\frac{1}{T}E\left[\tilde{X}\left(\omega\right)\tilde{Y}^{*}\left(\omega\right)\right]
-\]</div>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(T\)</span> is the total length of the signal and <span class="math notranslate nohighlight">\(*\)</span> denotes a complex
-conjugate. In practice, we won’t have to deal with the limit or the
-expectation, as everything will eventually be written in terms of
-the power spectral density <span class="math notranslate nohighlight">\(S_{\eta\eta}\left(\omega\right)=\left\langle \tilde{\eta}\left(\omega\right)\tilde{\eta}^{*}\left(\omega\right)\right\rangle \)</span> of some noise forcing <span class="math notranslate nohighlight">\(\eta(t)\)</span>. The only two things we will to compute spectral densities are the fact that the bracket operator <span class="math notranslate nohighlight">\(\left\langle \cdot\right\rangle \)</span> is linear, and care in scaling the power spectral density of the noise.</p></li>
-<li><p>The spectral density described above is what we will call the <strong>process</strong>
-spectral density. You can think of it as the <em>true</em> spectral density of the underlying process that generated the data. When working with real data, we will
-only have access to finite samples of the processes <span class="math notranslate nohighlight">\(X(t)\)</span>  and  <span class="math notranslate nohighlight">\(Y(t)\)</span>, defined over a finite interval <span class="math notranslate nohighlight">\(T\)</span>. Thus, all we can do is get an <em>estimate</em> of the spectrum, which we will call the <strong>sample</strong> spectrum. For now we won’t worry about how to compute these estimates, and just use a library that estiamtes these quantities for us.</p></li>
-<li><p>The <strong>power spectral density (PSD}</strong>, or the auto-spectrum of
-a stochastic process <span class="math notranslate nohighlight">\(X\)</span> is:</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
-P_{X}\left(f\right)=S_{XX}\left(f\right)=\left\langle \tilde{X}\left(f\right)\tilde{X}^{*}\left(f\right)\right\rangle =\lim_{T\rightarrow\infty}\frac{1}{T}E\left[\tilde{X}\left(f\right)\tilde{Y}^{*}\left(f\right)\right]
-\]</div>
-<ul class="simple">
-<li><p>The <strong>cross-covariance</strong> function. At least for now, we will
-be dealing with anomalies from a mean, so we can assume <span class="math notranslate nohighlight">\(E(X(t))=E(Y(t))=0\)</span>.
-If ths is the case, the cross-covariance becomes equal to the cross-correlation
-function, defined as:</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
-C_{XY}(\tau)=\text{Cov}\left(X(t),Y(t+\tau)\right)=E\left[X(t)Y(t+\tau)\right]=\lim_{T\rightarrow\infty}\frac{1}{T}\int_{-\infty}^{\infty}X(t)Y(t+\tau)dt
-\]</div>
-<ul class="simple">
-<li><p>A <strong>white noise:</strong> process is an uncorrelated process, i.e. the
-covariance is only non-zero at zero lag. If <span class="math notranslate nohighlight">\(\delta_{\tau}\)</span> is a
-delta-function centered on zero, then:</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
-C_{\eta\eta}\left(\tau\right)=E\left[\eta(t)\eta(t+\tau)\right]=\delta_{\tau}\sigma^{2}
-\]</div>
-</section>
-<section id="useful-properties-and-theorems">
-<h2>Useful Properties and Theorems<a class="headerlink" href="#useful-properties-and-theorems" title="Permalink to this heading">#</a></h2>
-<p>In practice, our derivations will make use of the following properties of the Fourier Transform, spectral density, and covariance functions:</p>
-<ul class="simple">
-<li><p>Fourier Transform of a time-derivative</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
-\boxed{\mathscr{F}\left\{ \frac{dX(t)}{dt}\right\} =i\omega\tilde{X}(\omega)}
-\]</div>
-<ul class="simple">
-<li><p>Linearity of cross spectral density:</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
-\boxed{\left\langle a\left(\tilde{X}(\omega)+\tilde{Y}(\omega)\right)\tilde{Z}^*(\omega)\right\rangle =a\left\langle \tilde{X}(\omega)\tilde{Z}^*(\omega)\right\rangle +a\left\langle \tilde{Y}(\omega)\tilde{Z}^*(\omega)\right\rangle }
-\]</div>
-<ul class="simple">
-<li><p>Expected power spectrum of a white noise process is a constant. In fact, this could be an alternative definition of ``white noise’’, with the <span class="math notranslate nohighlight">\(\delta\)</span>-function correlaton being a consequence. If <span class="math notranslate nohighlight">\(\eta(t)\)</span> is a white-noise process:</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
-\boxed{S_{\eta\eta}\left(\omega\right)=\left\langle \tilde{\eta}(\omega)\cdot\tilde{\eta}^{*}(\omega)\right\rangle =\tilde{s}_{\eta}^{2}}
-\]</div>
-<ul class="simple">
-<li><p>Expected cross-spectrum of two independent processes is zero</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
-\boxed{S_{XY}\left(\omega\right)=\left\langle \tilde{X}(\omega)\cdot\tilde{Y}(\omega)\right\rangle =0}
-\]</div>
-<ul class="simple">
-<li><p><strong>Wiener-Khinchin theorem</strong> links lagged-covariance with cross-spectrum:</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
-\boxed{C_{XY}(\tau)\overset{\mathscr{F}}{\longleftrightarrow}S_{XY}(\omega)}
-\]</div>
-<ul class="simple">
-<li><p><strong>Parseval’s Theorem</strong> is equivalent to the Wiener-Khinchin theorem
-at <span class="math notranslate nohighlight">\(\tau=0\)</span>, where <span class="math notranslate nohighlight">\(C_{XX}\left(0\right)=\text{var}\left(X\right)\)</span>. Still,
-it is important enough that it is worth discussing it on its own:</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
-\boxed{\sigma_{X}^{2}=\text{var}(X)=\int_{-\infty}^{\infty}S_{XX}\left(f\right)df}
-\]</div>
-</section>
+<div class="toctree-wrapper compound">
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -609,20 +469,20 @@ it is important enough that it is worth discussing it on its own:</p></li>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="Hasselmann.html"
+       href="../../intro.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">The Hasselmann model</p>
+        <p class="prev-next-title">CDDS Notes</p>
       </div>
     </a>
     <a class="right-next"
-       href="2_Hasselmann_model.html"
+       href="1_Mathematical_Prelims.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">2. The Hasselmann model</p>
+        <p class="prev-next-title">1. Mathematical Preliminaries</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -633,22 +493,7 @@ it is important enough that it is worth discussing it on its own:</p></li>
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions-fourier-transforms">Definitions: Fourier Transforms</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions-spectral-density-covariance">Definitions: Spectral Density &amp; Covariance</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#useful-properties-and-theorems">Useful Properties and Theorems</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
+                <div class="bd-sidebar-secondary bd-toc"></div>
               
             
           </div>
