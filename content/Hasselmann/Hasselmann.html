@@ -1,0 +1,1870 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>The Hasselmann model &#8212; SIMLES: Statistical Inference and Machine Learning for Earth Sciences</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/Hasselmann/Hasselmann';</script>
+    <link rel="canonical" href="https://cdds-uiuc.github.io/simles-book/content/Hasselmann/Hasselmann.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="4. Theoretical Solutions" href="4_Theory.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/CDDS_logo.png" class="logo__image only-light" alt="SIMLES: Statistical Inference and Machine Learning for Earth Sciences - Home"/>
+    <script>document.write(`<img src="../../_static/CDDS_logo.png" class="logo__image only-dark" alt="SIMLES: Statistical Inference and Machine Learning for Earth Sciences - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    SIMLES
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Hasselmann Model</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1_Mathematical_Prelims.html">1. Mathematical Preliminaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_Hasselmann_model.html">2. The Hasselmann model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_Simulating_Stochastic_Processes.html">3. Simulating discrete stochastic processes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_Theory.html">4. Theoretical Solutions</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">The Hasselmann model</a></li>
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/cdds-uiuc/note-book/master?urlpath=lab/tree/content/Hasselmann/Hasselmann.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/cdds-uiuc/note-book/blob/master/content/Hasselmann/Hasselmann.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/cdds-uiuc/note-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/cdds-uiuc/note-book/issues/new?title=Issue%20on%20page%20%2Fcontent/Hasselmann/Hasselmann.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/content/Hasselmann/Hasselmann.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>The Hasselmann model</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">The Hasselmann model</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-preliminaries">1. Mathematical Preliminaries</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fourier-transforms">Fourier Transforms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-density-covariance">Spectral Density &amp; Covariance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#useful-properties-and-theorems">Useful Properties and Theorems</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2. The Hasselmann model</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-physical-basis-1-box-model">The Physical Basis: 1-Box model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discretizing-the-hasselmann-model-for-simulations">Discretizing the Hasselmann model for simulations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-power-spectrum">The power spectrum</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spetrum-of-white-noise-forcing">Spetrum of white noise forcing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-the-power-spectrum-of-a-hasselmann-model">Visualize the power spectrum of a Hasselmann model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spectrum-as-a-function-of-parameters">Spectrum as a function of parameters</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-discrete-stochastic-processes">3. Simulating discrete stochastic processes</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-problem-with-continuous-white-noise">The problem with continuous white noise</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nyquist-frequency-and-a-truncated-white-noise-spectrum">Nyquist frequency and a truncated white noise spectrum:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-the-variance-in-a-simulation">Setting the variance in a simulation:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preferred-method-fixing-spetral-density-tilde-s-f">Preferred Method: Fixing spetral density <span class="math notranslate nohighlight">\(\tilde s_F\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alternative-fixing-sigma-f-delta-t-is-sampling-time">Alternative: Fixing <span class="math notranslate nohighlight">\(\sigma_{F}\)</span> (<span class="math notranslate nohighlight">\(\Delta t\)</span> is sampling time)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alternative-small-delta-t-then-averaging">Alternative: Small <span class="math notranslate nohighlight">\(\Delta t\)</span> then averaging</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#theoretical-spectra">4. Theoretical Spectra</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#power-spectrum-of-the-standard-hasselmann-model">Power Spectrum of the standard Hasselmann Model.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#asymptotic-behaviour">Asymptotic behaviour</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-spectrum-of-the-standard-hasselmann-model">Cross Spectrum of the standard Hasselmann Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-model-with-two-different-sources-of-forcing">A model with two different sources of forcing:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#to-do">To do:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ocean-and-atmospheric-heat-fluxes-and-forcing">Ocean and atmospheric heat fluxes and forcing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#red-noise-ocean-process">Red noise ocean process</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="the-hasselmann-model">
+<h1>The Hasselmann model<a class="headerlink" href="#the-hasselmann-model" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+
+<span class="k">if</span> <span class="s1">&#39;google.colab&#39;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">get_ipython</span><span class="p">()):</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Running on CoLab, need to install multitaper&#39;</span><span class="p">)</span>
+  <span class="o">%</span><span class="k">pip</span> install multitaper
+<span class="k">else</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Not running on CoLab&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">multitaper</span> <span class="kn">import</span> <span class="n">mtspec</span>
+<span class="kn">from</span> <span class="nn">multitaper</span> <span class="kn">import</span> <span class="n">mtcross</span>
+
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;legend.fontsize&#39;</span><span class="p">:</span> <span class="s1">&#39;x-large&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;figure.figsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>
+          <span class="s1">&#39;axes.labelsize&#39;</span><span class="p">:</span> <span class="s1">&#39;x-large&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;axes.titlesize&#39;</span><span class="p">:</span><span class="s1">&#39;x-large&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;xtick.labelsize&#39;</span><span class="p">:</span><span class="s1">&#39;x-large&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;ytick.labelsize&#39;</span><span class="p">:</span><span class="s1">&#39;x-large&#39;</span><span class="p">}</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="mathematical-preliminaries">
+<h1>1. Mathematical Preliminaries<a class="headerlink" href="#mathematical-preliminaries" title="Permalink to this heading">#</a></h1>
+<section id="fourier-transforms">
+<h2>Fourier Transforms<a class="headerlink" href="#fourier-transforms" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Fourier Transform, and it’s inverse, which can be written either in
+terms of frequency <span class="math notranslate nohighlight">\(f\)</span> or angular freuency <span class="math notranslate nohighlight">\(\omega.\)</span></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ \mathscr{F}\left\{ X(t)\right\} =\int_{-\infty}^{+\infty}X(t)e^{-2\pi ift}dt=\tilde{X}\left(f\right)\]</div>
+<div class="math notranslate nohighlight">
+\[
+\mathscr{F}\left\{ X(t)\right\} =\int_{-\infty}^{+\infty}X(t)e^{-i\omega t}dt=\tilde{X}\left(\omega\right)
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\mathscr{F}^{-1}\left\{ \tilde{X}\left(f\right)\right\} =\int_{-\infty}^{+\infty}\tilde{X}\left(f\right)e^{2\pi ift}df=X\left(t\right)
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\mathscr{F}^{-1}\left\{ \tilde{X}\left(\omega\right)\right\} =\frac{1}{2\pi}\int_{-\infty}^{+\infty}\tilde{X}\left(\omega\right)e^{i\omega t}d\omega=X\left(t\right)
+\]</div>
+<ul class="simple">
+<li><p>Unless otherwise noted, we will use <span class="math notranslate nohighlight">\(X\)</span> to denote time-domain functions
+<span class="math notranslate nohighlight">\(X(t)\)</span> and <span class="math notranslate nohighlight">\(\tilde{X}\)</span> to denote frequency domain functions, <span class="math notranslate nohighlight">\(\tilde{X}\left(f\right)\)</span>
+or <span class="math notranslate nohighlight">\(\tilde{X}\left(\omega\right)\)</span>. We will use the following notation
+two denote two quantities are related through a Fourier/Invers Fourier
+transformation:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+X(t)\overset{\mathscr{F}}{\longleftrightarrow}\tilde{X}(f)
+\]</div>
+<ul class="simple">
+<li><p><strong>Nyquist frequency:</strong> for discrete time-series evaluated at
+discrete time-steps <span class="math notranslate nohighlight">\(t_{i}\)</span> separated by <span class="math notranslate nohighlight">\(\Delta t=t_{i+1}-t_{i}\)</span>
+the Fourier Transform can only be evaluated at frequencies up to the
+sampling frequency, also called the Nyquist frequency</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+f_{N}=\frac{1}{2\Delta t}.
+\]</div>
+<p>It is not possible to estimate energy at freuencies higher than the
+Nyquist frequncy without more finely resolved data.</p>
+</section>
+<section id="spectral-density-covariance">
+<h2>Spectral Density &amp; Covariance<a class="headerlink" href="#spectral-density-covariance" title="Permalink to this heading">#</a></h2>
+<p>Here we will refresh some definitions and properties of Fourier Analysis.
+The math we use will not be rigurous, but it will be, hopefully, consistent.</p>
+<p>Wikipedia has some decent coverage of spectral analysis.</p>
+<ul class="simple">
+<li><p>The <strong>cross power spectral density</strong> of two variables is:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+S_{XY}\left(\omega\right)=\left\langle \tilde{X}\left(\omega\right)\tilde{Y}^{*}\left(\omega\right)\right\rangle =\lim_{T\rightarrow\infty}\frac{1}{T}E\left[\tilde{X}\left(\omega\right)\tilde{Y}^{*}\left(\omega\right)\right]
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(T\)</span> is the total length of the signal and <span class="math notranslate nohighlight">\(*\)</span> denotes a complex
+conjugate. In practice, we won’t have to deal with the limit or the
+expectation, as everything will eventually be written in terms of
+the power spectral density <span class="math notranslate nohighlight">\(\tilde{s}^{2}\)</span> of some noise forcing
+<span class="math notranslate nohighlight">\(\eta(t)\)</span>, where <span class="math notranslate nohighlight">\(\tilde{s}_{\eta}^{2}\left(\omega\right)=\left\langle \tilde{\eta}\left(\omega\right)\tilde{\eta}^{*}\left(\omega\right)\right\rangle \)</span>.
+As long as we are careful to properly scale the spectrum of the noise,
+the only other thing we need is the fact that the bracket notation
+<span class="math notranslate nohighlight">\(\left\langle \cdot\right\rangle \)</span> is linear.</p>
+<ul class="simple">
+<li><p>The spectral density described above is what we will call the <strong>process</strong>
+spectral density. I.e. this is a parameter of the process. You can
+also think of it as the <em>true</em>spectral density of the underlying
+process that generated the data. When working with real data, we will
+only have access to finite samples of the processes <span class="math notranslate nohighlight">\(X(t)\)</span>
+and  <span class="math notranslate nohighlight">\(Y(t)\)</span> defined over a finite interval <span class="math notranslate nohighlight">\(T\)</span>. Thus, all
+we can do is get an <em>estimate</em> of the spectrum, which we will
+call the <strong>sample</strong> spectrum. For now we won’t worry about how
+to compute these estimates, and just use a library that estiamtes
+these quantities for us.</p></li>
+<li><p>The <strong>power spectral density (PSD}</strong>, or the auto-spectrum of
+a stochastic process <span class="math notranslate nohighlight">\(X\)</span> is:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+P_{X}\left(f\right)=S_{XX}\left(f\right)=\left\langle \tilde{X}\left(f\right)\tilde{X}^{*}\left(f\right)\right\rangle =\lim_{T\rightarrow\infty}\frac{1}{T}E\left[\tilde{X}\left(f\right)\tilde{Y}^{*}\left(f\right)\right]
+\]</div>
+<ul class="simple">
+<li><p>The <strong>cross-covariance</strong> function. At least for now, we will
+be dealing with anomalies from a mean, so we can assume <span class="math notranslate nohighlight">\(E(X(t))=E(Y(t))=0\)</span>.
+If ths is the case, the cross-covariance becomes equal to the cross-correlation
+function, and they both become</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+C_{XY}(\tau)=\text{Cov}\left(X(t),Y(t+\tau)\right)=E\left[X(t)Y(t+\tau)\right]=\lim_{T\rightarrow\infty}\frac{1}{T}\int_{-\infty}^{\infty}X(t)Y(t+\tau)dt
+\]</div>
+<ul class="simple">
+<li><p><strong>White noise:</strong> process is an uncorrelated process, i.e. the
+covariance is only non-zero at zero lag. If <span class="math notranslate nohighlight">\(\delta_{\tau}\)</span> is a
+delta-function centered on zero, then:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+C_{\eta\eta}\left(\tau\right)=E\left[X(t)Y(t+\tau)\right]=\delta_{\tau}\sigma^{2}
+\]</div>
+</section>
+<section id="useful-properties-and-theorems">
+<h2>Useful Properties and Theorems<a class="headerlink" href="#useful-properties-and-theorems" title="Permalink to this heading">#</a></h2>
+<p>In practice, our derivations will make use of the following properties
+of the Fourier Transform, Spectral density, and covariance functions</p>
+<ul class="simple">
+<li><p>Fourier Transform of a time-derivative</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\boxed{\mathscr{F}\left\{ \frac{dx(t)}{dt}\right\} =i\omega\tilde{X}(\omega)}
+\]</div>
+<ul class="simple">
+<li><p>Linearity of cross spectral density:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\boxed{\left\langle a\left(\tilde{X}+\tilde{Y}\right)\tilde{Z}\right\rangle =a\left\langle \tilde{X}\tilde{Z}\right\rangle +a\left\langle \tilde{Y}\tilde{Z}\right\rangle }
+\]</div>
+<ul class="simple">
+<li><p>Expected auto-cross-spectrum (i.e. power spectrum) of a white noise
+process is a constant. In fact, this could be an alternative definition
+of ``white noise’’, with the <span class="math notranslate nohighlight">\(\delta\)</span>-function correlaton being
+a consequence. If <span class="math notranslate nohighlight">\(\eta(t)\)</span> is a white-noise process:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\boxed{S_{\eta\eta}\left(\omega\right)=\left\langle \tilde{\eta}(\omega)\cdot\tilde{\eta}^{*}(\omega)\right\rangle =\tilde{s}_{\eta}^{2}}
+\]</div>
+<ul class="simple">
+<li><p>Expected cross-spectrum of two independent processes is zero</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\boxed{S_{XY}\left(\omega\right)=\left\langle \tilde{X}(\omega)\cdot\tilde{Y}(\omega)\right\rangle =0}
+\]</div>
+<ul class="simple">
+<li><p><strong>Wiener-Khinchin theorem</strong> linking lagged-covariance with cross-spectrum:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\boxed{C_{XY}(\tau)\overset{\mathscr{F}}{\longleftrightarrow}S_{XY}(\omega)}
+\]</div>
+<ul class="simple">
+<li><p><strong>Parseval’s Theorem</strong> is equivalent to the Wiener-Khinchin theorem
+at <span class="math notranslate nohighlight">\(\tau=0\)</span>, where <span class="math notranslate nohighlight">\(C_{XX}\left(0\right)=var\left(X\right)\)</span>. Still,
+it is important enough that it is worth discussing it on its own:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\boxed{\sigma_{X}^{2}=var(X)=\int_{-\infty}^{\infty}S_{XX}\left(f\right)df}
+\]</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>2. The Hasselmann model<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+<section id="the-physical-basis-1-box-model">
+<h2>The Physical Basis: 1-Box model<a class="headerlink" href="#the-physical-basis-1-box-model" title="Permalink to this heading">#</a></h2>
+<p>Consider the evolution of the energy budget of a linear system described
+by temperature <span class="math notranslate nohighlight">\(T(t)\)</span> , and forced by an external heat-flux <span class="math notranslate nohighlight">\(F(t).\)</span>
+Assuming the system has thermal inertia <span class="math notranslate nohighlight">\(C\)</span>, we can write the general
+evolution of the model as:</p>
+<div class="math notranslate nohighlight">
+\[
+C\frac{dT}{dt}=Q\left(T\right)+F(t)
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(Q(T)\)</span> are heat fluxes that are caused as a response to temperature
+fluctuations.</p>
+<p>Now consider a steady-state <span class="math notranslate nohighlight">\(T_{0}\)</span> with steady-state forcing <span class="math notranslate nohighlight">\(F_{0}\)</span>,
+such that <span class="math notranslate nohighlight">\(dT/dt=0\)</span> and <span class="math notranslate nohighlight">\(Q(T_{0})=F_{0}\)</span>. Now consider small deviations
+in forcing <span class="math notranslate nohighlight">\(\Delta F(t)=F(t)-F_{0}\)</span> that lead to small deviations
+from steady state in temperature <span class="math notranslate nohighlight">\(\Delta T(t)=T(t)-T_{0}\)</span> such that
+<span class="math notranslate nohighlight">\(\Delta T/T_{0}\ll1\)</span>. We can linearize the system thus:</p>
+<div class="math notranslate nohighlight">
+\[
+C\frac{dT}{dt}=Q\left(T_{0}\right)+\left.\frac{dQ}{dT}\right|_{T_{0}}\Delta T+\mathcal{O}\left(\left(\frac{\Delta T}{T_{0}}\right)^{2}\right)+F_{0}+\Delta F(t)
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+C\frac{d\Delta T}{dt}=-\lambda\Delta T+\Delta F\left(t\right)
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\lambda\)</span> is usually called the feedback. It can also be thought
+of as a restoring rate, or a damping rate. A larger value for <span class="math notranslate nohighlight">\(\lambda\)</span>
+means that an anomaly <span class="math notranslate nohighlight">\(\Delta T\)</span> will engender a larger negative
+heat flux -<span class="math notranslate nohighlight">\(\lambda\Delta T\)</span> that will tend to quickly damp the <span class="math notranslate nohighlight">\(\Delta T\)</span>
+anomaly. I’ve written <span class="math notranslate nohighlight">\(\lambda=-dQ/dt\)</span> because almost all the physical
+systems encountered in earth-sciences will have negative feedback.
+Having a positive feedback (<span class="math notranslate nohighlight">\(dQ/dt&gt;0)\)</span> Implies the system is unstable
+and will blow up when taken out of its equilibrium point <span class="math notranslate nohighlight">\(T_{0}.\)</span>
+Thus, in our convention, <span class="math notranslate nohighlight">\(\lambda\)</span> will usually have positive values
+for a stable system. That being said, signs conventions vary wildly,
+and often times you will encounter <span class="math notranslate nohighlight">\(\lambda=dQ/dt\)</span> with <span class="math notranslate nohighlight">\(\lambda\)</span>
+taking negative values for a stable system.</p>
+<p>The system will be characterized by two important parameters: (1)
+The first is the the equilibrium Sensitivity. At equilibrium:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{dT}{dt}=0\Rightarrow\frac{\Delta T}{\Delta F}=\frac{1}{\lambda},
+\]</div>
+<p>and (2) the characteristic time scale <span class="math notranslate nohighlight">\(\tau_{0}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\boxed{\tau_{0}=\frac{C}{\lambda}}
+\]</div>
+<p>For the rest of the notes, we will drop the <span class="math notranslate nohighlight">\(\Delta\)</span> and assume that
+<span class="math notranslate nohighlight">\(T,F\)</span> and other variables represent small deviations from a steady
+state <span class="math notranslate nohighlight">\(T_{0},F_{0}.\)</span> The equation for the system can be written as</p>
+<div class="math notranslate nohighlight">
+\[
+\boxed{C\frac{dT(t)}{dt}=-\lambda T(t)+F\left(t\right)}
+\]</div>
+<p>or, equivalently as:</p>
+<div class="math notranslate nohighlight">
+\[
+\boxed{\tau_{0}\frac{dT(t)}{dt}=-T(t)+\frac{1}{\lambda}F\left(t\right)}
+\]</div>
+<p>This is just a simple 1-dimensional linear differential equation.
+The interesting part about it is that the forcing term <span class="math notranslate nohighlight">\(F(t)\)</span> is
+random. In the classic Hasselmann paradigm, <span class="math notranslate nohighlight">\(F(t)\)</span> is assumed to
+be uncorrelated white noise.</p>
+<p>This type of box models are ubiquitous in Earth Sciences. The original
+Hasselmann model was used to represent variations in surface ocean
+temperatures, under the influece of heat exchanges with the atmosphere.
+The <span class="math notranslate nohighlight">\(F(t)\)</span> term represented weather anomalies which, on time-scales
+longer than the usual time-scale of weather phenomena (&lt;2 weeks) could
+be considered to be random noise. In classical physics, this equation
+is called a Langevin equation or, in a slightly different form, an
+Orsten-Uhlenbeck process.</p>
+</section>
+<section id="discretizing-the-hasselmann-model-for-simulations">
+<h2>Discretizing the Hasselmann model for simulations<a class="headerlink" href="#discretizing-the-hasselmann-model-for-simulations" title="Permalink to this heading">#</a></h2>
+<p>In this notebook we simulate some examples of the Hasselmann model and visualizing the spectrum. In order to simulate the above differential equation numerically,
+we have to discretize it. Taking a simple Forward-Euler finite difference
+scheme we can write:</p>
+<div class="math notranslate nohighlight">
+\[
+C\frac{T_{n}-T_{n-1}}{\Delta t}=-\lambda T_{n-1}+F_{n}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+T_{n}=\left(1-\frac{\Delta t\lambda}{C}\right)T_{n-1}+\frac{\Delta t}{C}F_{n}
+\]</div>
+<p>The discrete version of the Hasselmann model thus becomes:</p>
+<div class="math notranslate nohighlight">
+\[
+T_{n}=\phi T_{n-1}+\varepsilon_{n}
+\]</div>
+<p>with:</p>
+<div class="math notranslate nohighlight">
+\[
+\tau_{0}=\frac{C}{\lambda};\;\;\;\phi=1-\frac{\Delta t}{\tau_{0}};\;\;\;\varepsilon_{n}=\frac{\Delta t}{\tau_{o}}\frac{1}{\lambda}F_{n};
+\]</div>
+</section>
+<section id="the-power-spectrum">
+<h2>The power spectrum<a class="headerlink" href="#the-power-spectrum" title="Permalink to this heading">#</a></h2>
+<section id="spetrum-of-white-noise-forcing">
+<h3>Spetrum of white noise forcing<a class="headerlink" href="#spetrum-of-white-noise-forcing" title="Permalink to this heading">#</a></h3>
+<p>To simulate the Hasselmann model we will need to choose some values of <span class="math notranslate nohighlight">\(\tau_{0},\lambda\)</span> and decide on the variance <span class="math notranslate nohighlight">\(\sigma_{F}^{2}\)</span> of the white noise process <span class="math notranslate nohighlight">\(F_{n}\)</span>. We will also need to choose a time-step <span class="math notranslate nohighlight">\(\Delta t\)</span> to discretize the differential equation.</p>
+<p>First, let’s visualize a white noise process, <span class="math notranslate nohighlight">\(F_n\)</span>, which we’ll need to force the rest of the model.</p>
+<p><strong>Spectral estimators</strong>: to estimate the power spectra of a sample of <span class="math notranslate nohighlight">\(F_n\)</span> we will use the <a class="reference external" href="https://multitaper.readthedocs.io/en/latest/">multitaper</a> python package. Since our data are real, the spectra will be symmetric around 0, so we will generally only plot the positive frequencies.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set parameters</span>
+<span class="n">dt</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">12</span><span class="p">;</span>     <span class="c1">#time-scale. Let&#39;s say time is in years, and the time-step is 1 month, so 1/12 years.</span>
+<span class="n">T</span><span class="o">=</span><span class="mi">100</span>        <span class="c1"># total integration time [years]</span>
+<span class="n">sigma_F</span><span class="o">=</span><span class="mi">2</span>    <span class="c1"># variance of the forcing</span>
+
+<span class="c1"># time-vector</span>
+<span class="n">t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">dt</span><span class="p">)</span>
+<span class="n">N</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+
+<span class="c1">#sample a gaussian white noise process (each F_n is independent and identically distributed, or i.i.d.).</span>
+<span class="n">F</span><span class="o">=</span><span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">scale</span><span class="o">=</span><span class="n">sigma_F</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
+
+
+<span class="c1"># Compute the spectral estimates</span>
+<span class="n">out</span><span class="o">=</span><span class="n">mtspec</span><span class="o">.</span><span class="n">MTSpec</span><span class="p">(</span><span class="n">F</span><span class="p">,</span><span class="n">nw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">,</span><span class="n">kspec</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">f</span><span class="o">=</span><span class="n">out</span><span class="o">.</span><span class="n">freq</span>       <span class="c1"># freuencies</span>
+<span class="n">S_FF</span><span class="o">=</span><span class="n">out</span><span class="o">.</span><span class="n">spec</span>    <span class="c1"># power spectra</span>
+<span class="n">S_FF</span><span class="o">=</span><span class="n">S_FF</span><span class="p">[</span><span class="n">f</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">]</span>         <span class="c1"># keep positive frequencies</span>
+<span class="n">f</span><span class="o">=</span><span class="n">f</span><span class="p">[</span><span class="n">f</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Plots</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">16</span><span class="p">,</span><span class="mi">12</span><span class="p">]);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">F</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time [years]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Temperature [K]&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">S_FF</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Estimated Power Spectrum: $\hat S_</span><span class="si">{FF}</span><span class="s1">(f)$&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;frequency [1/yr]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;PSD&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x134ba8170&gt;
+</pre></div>
+</div>
+<img alt="../../_images/74de139159f6bf3f336a9ce23057cf1cd6780103247e3cac413677ed2bee7f89.png" src="../../_images/74de139159f6bf3f336a9ce23057cf1cd6780103247e3cac413677ed2bee7f89.png" />
+</div>
+</div>
+</section>
+<section id="visualize-the-power-spectrum-of-a-hasselmann-model">
+<h3>Visualize the power spectrum of a Hasselmann model<a class="headerlink" href="#visualize-the-power-spectrum-of-a-hasselmann-model" title="Permalink to this heading">#</a></h3>
+<p>Now let’s simulate a Hasselmann Model.</p>
+<p>You should play around and change the correlation time scale, <span class="math notranslate nohighlight">\(\tau_0\)</span>, the forcing variance, and the feedback and see how the spetrum changes (you may need to keep note of the axis limits).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">12</span><span class="p">;</span>     <span class="c1">#time-scale. Let&#39;s say time is in years, and the time-step is 1 month, so 1/12 years.</span>
+<span class="n">T</span><span class="o">=</span><span class="mi">500</span>        <span class="c1"># total integration time [years]</span>
+<span class="n">sigma_F</span><span class="o">=</span><span class="mi">2</span>    <span class="c1"># variance of the forcing</span>
+<span class="n">tau_0</span><span class="o">=</span> <span class="mi">3</span>       <span class="c1"># time-scale tau=C/lambda [years]</span>
+<span class="n">lam</span><span class="o">=</span> <span class="mi">7</span>       <span class="c1"># feedback lambda</span>
+
+<span class="c1"># time-vector</span>
+<span class="n">t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">dt</span><span class="p">)</span>
+<span class="n">N</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+
+<span class="c1">#sample a gaussian white noise process (each F_n is independent and identically distributed, or i.i.d.).</span>
+<span class="n">F</span><span class="o">=</span><span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">scale</span><span class="o">=</span><span class="n">sigma_F</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
+
+<span class="c1"># calculate phi and eps for the discretization</span>
+<span class="n">phi</span><span class="o">=</span>   <span class="mi">1</span><span class="o">-</span><span class="n">dt</span><span class="o">/</span><span class="n">tau_0</span>
+<span class="n">eps</span> <span class="o">=</span> <span class="p">(</span><span class="n">dt</span><span class="o">/</span><span class="n">tau_0</span><span class="o">/</span><span class="n">lam</span><span class="p">)</span><span class="o">*</span><span class="n">F</span><span class="p">;</span>
+
+<span class="c1">## Simulate the Hasselmann model</span>
+<span class="c1">#pre-allocate</span>
+<span class="n">T</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">):</span>
+            <span class="n">T</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">=</span><span class="n">phi</span><span class="o">*</span><span class="n">T</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">eps</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+
+<span class="n">out</span><span class="o">=</span><span class="n">mtspec</span><span class="o">.</span><span class="n">MTSpec</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">nw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">,</span><span class="n">kspec</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">f</span><span class="o">=</span><span class="n">out</span><span class="o">.</span><span class="n">freq</span>
+<span class="n">S_TT</span><span class="o">=</span><span class="n">out</span><span class="o">.</span><span class="n">spec</span>
+<span class="n">S_TT</span><span class="o">=</span><span class="n">S_TT</span><span class="p">[</span><span class="n">f</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">f</span><span class="o">=</span><span class="n">f</span><span class="p">[</span><span class="n">f</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s now plot the temperature time-series as well as the power spectrum and the autocorrelation function. We will use a log-log plot for the power spectrum.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plots</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">16</span><span class="p">,</span><span class="mi">10</span><span class="p">]);</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time [years]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Temperature &#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">S_TT</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Estimated Power Spectrum: $\hat S_</span><span class="si">{FF}</span><span class="s1">(f)$&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;frequency [1/yr]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;PSD&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot autocorrelation function</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="n">acf</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">correlate</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">)</span>
+<span class="n">acf</span><span class="o">=</span><span class="n">acf</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">acf</span><span class="p">)</span>
+<span class="n">lags</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lags</span><span class="o">*</span><span class="n">dt</span><span class="p">,</span><span class="n">acf</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;lag [years]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\rho(T,T)$&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="n">N</span><span class="o">*</span><span class="n">dt</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">N</span><span class="o">*</span><span class="n">dt</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../../_images/f6564d2f990322e96b9d9942a47fc9f001f1f81d7b569edc1d563cd469d120b0.png" src="../../_images/f6564d2f990322e96b9d9942a47fc9f001f1f81d7b569edc1d563cd469d120b0.png" />
+</div>
+</div>
+</section>
+<section id="spectrum-as-a-function-of-parameters">
+<h3>Spectrum as a function of parameters<a class="headerlink" href="#spectrum-as-a-function-of-parameters" title="Permalink to this heading">#</a></h3>
+<p>The cell below plots time series, power spectra and auto-correlation functions for different values of the parameters.</p>
+<p>Note that in the code below we prescribe the variance of the temperature time-series, rather than of the forcing.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Discrete time series</span>
+<span class="n">dt</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">12</span><span class="p">;</span>
+<span class="n">T</span><span class="o">=</span><span class="mi">500</span>
+
+<span class="n">sigma_vec</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">9</span><span class="p">];</span>
+<span class="n">tau_vec</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.7</span><span class="p">,</span><span class="mi">15</span><span class="p">];</span>
+
+<span class="c1"># Time Domain</span>
+<span class="n">t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">dt</span><span class="p">)</span>
+<span class="n">N</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">20</span><span class="p">,</span><span class="mi">16</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">ind_sigma</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">ind_tau</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+        <span class="c1"># autocorrelation coefficient &amp; total variance of the AR(1) process</span>
+        <span class="n">tau_0</span><span class="o">=</span><span class="n">tau_vec</span><span class="p">[</span><span class="n">ind_tau</span><span class="p">]</span>
+        <span class="n">sigma_T</span><span class="o">=</span><span class="n">sigma_vec</span><span class="p">[</span><span class="n">ind_sigma</span><span class="p">];</span>
+        
+        <span class="k">if</span> <span class="n">ind_tau</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+            <span class="n">phi</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">phi</span><span class="o">=</span><span class="mi">1</span><span class="o">-</span><span class="n">dt</span><span class="o">/</span><span class="n">tau_0</span>
+        
+        <span class="c1">#pre-allocate T</span>
+        <span class="n">T</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+
+        <span class="c1">## Simulate AR1 process: note that the variance of the noise doesn&#39;t matter nowo, since we will rescale X)</span>
+        <span class="n">eps</span><span class="o">=</span><span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">);</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">):</span>
+            <span class="n">T</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="n">phi</span><span class="o">*</span><span class="n">T</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
+        
+        <span class="c1">#rescale X to have a given variance</span>
+        <span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="o">*</span><span class="n">sigma_T</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+
+
+
+        <span class="n">out</span><span class="o">=</span><span class="n">mtspec</span><span class="o">.</span><span class="n">MTSpec</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">nw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">,</span><span class="n">kspec</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">=</span><span class="n">out</span><span class="o">.</span><span class="n">freq</span>
+        <span class="n">S_TT</span><span class="o">=</span><span class="n">out</span><span class="o">.</span><span class="n">spec</span>
+        <span class="n">S_TT</span><span class="o">=</span><span class="n">S_TT</span><span class="p">[</span><span class="n">f</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">f</span><span class="o">=</span><span class="n">f</span><span class="p">[</span><span class="n">f</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="n">acf</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">correlate</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">)</span>
+        <span class="n">acf</span><span class="o">=</span><span class="n">acf</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">acf</span><span class="p">)</span>
+        <span class="n">lags</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+        
+        <span class="c1">## Make Plots</span>
+    
+        <span class="n">subplot_ind</span><span class="o">=</span><span class="mi">6</span><span class="o">*</span><span class="p">(</span><span class="n">ind_sigma</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">ind_tau</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="n">subplot_ind</span><span class="p">)</span>
+    
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+        <span class="c1">#plt.hlines(0,0,N,&#39;r&#39;)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\tau_0=$&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">tau_0</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="o">+</span><span class="sa">r</span><span class="s1">&#39;; $\sigma^2_T=$&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">sigma_vec</span><span class="p">[</span><span class="n">ind_sigma</span><span class="p">])))</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;j&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ind_tau</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+
+        <span class="n">subplot_ind</span><span class="o">=</span><span class="mi">6</span><span class="o">*</span><span class="p">(</span><span class="n">ind_sigma</span><span class="p">)</span><span class="o">+</span><span class="mi">3</span><span class="o">+</span><span class="p">(</span><span class="n">ind_tau</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="n">subplot_ind</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">S_TT</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Estimated Power Spectrum: $\hat S_</span><span class="si">{FF}</span><span class="s1">(f)$&#39;</span><span class="p">)</span>
+        <span class="c1">#plt.hlines(sigma_eps**2*dt,np.min(f),np.max(f),&#39;r&#39;,label=r&#39;Theoretical Power Spectrum: $S_{FF}=$constant&#39;)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\tau_0=$&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">tau_0</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="o">+</span><span class="sa">r</span><span class="s1">&#39;; $\sigma^2_T=$&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">sigma_vec</span><span class="p">[</span><span class="n">ind_sigma</span><span class="p">])))</span>
+        
+        <span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;frequency [1/yr]&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;PSD&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mf">1E-3</span><span class="p">,</span><span class="mf">1E3</span><span class="p">)</span>
+                
+
+    
+        <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">18</span><span class="o">+</span><span class="n">ind_tau</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lags</span><span class="o">/</span><span class="mi">12</span><span class="p">,</span><span class="n">acf</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lags</span><span class="o">/</span><span class="mi">12</span><span class="p">,</span><span class="n">phi</span><span class="o">**</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">lags</span><span class="p">)),</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\rho(lag)$&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;lag [years]&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
+
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">18</span><span class="o">+</span><span class="mi">3</span><span class="o">+</span><span class="n">ind_tau</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lags</span><span class="o">/</span><span class="mi">12</span><span class="p">,</span><span class="n">acf</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lags</span><span class="o">/</span><span class="mi">12</span><span class="p">,</span><span class="n">phi</span><span class="o">**</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">lags</span><span class="p">)),</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\rho(lag)$&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;lag [yrs]&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../../_images/2efe6feee24bab867fbb0c2ba3ce270ff3297de6926b4f484e145b8dc004d354.png" src="../../_images/2efe6feee24bab867fbb0c2ba3ce270ff3297de6926b4f484e145b8dc004d354.png" />
+</div>
+</div>
+<p>Note that the higher the time-scale <span class="math notranslate nohighlight">\(\tau_0\)</span>, the more correlate the data. Indeed, <span class="math notranslate nohighlight">\(\tau_0\)</span> is the decorrelation time-scale. For the Hasselmann model, <span class="math notranslate nohighlight">\(\rho(T(t),T(t+\tau))=\exp^{-\tau/\tau_0}\)</span>. At the same time, <span class="math notranslate nohighlight">\(1/\tau_0\)</span> is also the frequency at which the power spectra goes from having a slope to being flat (i.e. “white”).</p>
+<p>In general, the higher the average spectrum the more variance the time series. By the Parseval theorem, the variance is the integral of the PSD. So for processes where the power spectra have more spectral density at lower frequencies (i.e. the case of large <span class="math notranslate nohighlight">\(\tau_0\)</span>) more of the variance comes from these lower frequencies.</p>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="simulating-discrete-stochastic-processes">
+<h1>3. Simulating discrete stochastic processes<a class="headerlink" href="#simulating-discrete-stochastic-processes" title="Permalink to this heading">#</a></h1>
+<section id="the-problem-with-continuous-white-noise">
+<h2>The problem with continuous white noise<a class="headerlink" href="#the-problem-with-continuous-white-noise" title="Permalink to this heading">#</a></h2>
+<p>Before we can go ahead and solve theoretically for the spectrum of
+a Hasselmann model we need to deal with one more issue: How do we
+set the variance of the stochastic forcing <span class="math notranslate nohighlight">\(F(t)\)</span>? One has to be
+very careful when modeling discretized stochastic processes as the
+amount of variance may change when changing the time-step and the
+length of the time interval considered. The problem is that there
+is no well-defined continuous version of the white noise process.
+Parseval’s theorem illustrates the issue. If a white noise process
+<span class="math notranslate nohighlight">\(F(t)\)</span> has a constant spectral density <span class="math notranslate nohighlight">\(\tilde{s}_{F}^{2}\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+var(F)=\int_{-\infty}^{\infty}\tilde{s}_{F}^{2}df=\tilde{s}_{F}^{2}\int_{-\infty}^{\infty}df=\infty
+\]</div>
+<p>In reality white noise is not truly white at all frequencies. i.e.
+it does not have a constant spectral density at all frequency. At
+high enough frequency, the spectrum of the forcing does go down. This
+is indeed Hasselmann’s assumption; that the forcing is white at time-scales
+longer than a given timescale <span class="math notranslate nohighlight">\(\tau_{w}\)</span> (i.e. frequencies lower
+than a frequency <span class="math notranslate nohighlight">\(f_{w}\)</span>). For example, if we were to assume weather
+forcing <span class="math notranslate nohighlight">\(F\)</span> was ‘white’ up to hourly time-scales it would mean
+that weather is not correlated between this hour and the next hour.
+In reality, weather is only uncorrelated (or, `white’) at timescales
+longer than <span class="math notranslate nohighlight">\(\sim 2\)</span> weeks.</p>
+<p><strong>Side note:</strong> White noise can informally defined as the time-derivative
+of a Wiener process <span class="math notranslate nohighlight">\(F=dW/dt\)</span>, but I’ve been told by Wikipedia that
+is not something mathematicians look kindly upon. If we want to stay
+in the time-domain, one option is to model the Hasselmann equation
+as an Ornstein–Uhlenbeck Process:</p>
+<div class="math notranslate nohighlight">
+\[
+dT=\tau_{0}^{-1}Tdt+\lambda^{-1}dW(t)
+\]</div>
+<p>where the ill defined <span class="math notranslate nohighlight">\(Fdt\)</span> is replaced by the well defined Wiener
+process <span class="math notranslate nohighlight">\(dW\)</span>, a continuous version of the random walk. The problem
+is that once we move passed the simple one-dimensional Hasselmann
+model into more complex linear systems with more than one state variable
+and more than one forcing, things become messy. Also, it may be the
+case that the forcing term cannot be assumed to be white, which is
+the case in the tropics.</p>
+</section>
+<section id="nyquist-frequency-and-a-truncated-white-noise-spectrum">
+<h2>Nyquist frequency and a truncated white noise spectrum:<a class="headerlink" href="#nyquist-frequency-and-a-truncated-white-noise-spectrum" title="Permalink to this heading">#</a></h2>
+<p>For a dataset sampled discretely at time intervals <span class="math notranslate nohighlight">\(\Delta t\)</span> - which
+is every dataset that we can measure or simulate, the sampling theorem
+(or Nyquist-Shannon theorem) tells us that we can only estimate the
+spectrum between frequencies <span class="math notranslate nohighlight">\(-f_{N}\)</span> and <span class="math notranslate nohighlight">\(f_{N}\)</span> where <span class="math notranslate nohighlight">\(f_{N}\)</span>
+is the Nyquist frequncy.</p>
+<div class="math notranslate nohighlight">
+\[
+f_{N}=\frac{1}{2\Delta t}
+\]</div>
+<p>More than that, the sampling theorem tells us that if there is spectral
+power at frequencies <span class="math notranslate nohighlight">\(\left|f\right|&gt;f_{N}\)</span> than this power will
+be aliased at frequencies smaller than the sampling frequency <span class="math notranslate nohighlight">\(\left|f\right|&lt;f_{N}\)</span>
+and thus bias our estimate of the variance in this range.</p>
+<p>Thus, the preferred option for simulating a Hasselmann model is to
+fix the spectral density of the forcing <span class="math notranslate nohighlight">\(F(t)\)</span>, and assume it is
+zero outside the Nyquist frequency <span class="math notranslate nohighlight">\(f_{N}\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+S_{FF}\left(f\right)=\begin{cases}
+\tilde{s}_{F}^{2} &amp; \text{if }f\in\left[-f_{N};f_{N}\right]\\
+0 &amp; \text{otherwise}
+\end{cases}
+\end{split}\]</div>
+<p>This both helps avoid the aliasing issue and also accounts for the
+fact that Forcing spectrum is not truly white up to infinitely high
+frequency. In this case, the variance of the discrete time-series
+<span class="math notranslate nohighlight">\(F_{n}=F(t_{n})\)</span> can be reconstructed as:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{var}\left(F\right)=\sigma_{F}^{2}=C_{FF}\left(0\right)=\int_{-\infty}^{\infty}S_{FF}(f)df=\int_{-f_{N}}^{f_{N}}\tilde{s}_{F}^{2}df=\tilde{s}_{F}^{2}\cdot2f_{N}=\tilde{s}_{F}^{2}\cdot2\frac{1}{2\Delta t}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\boxed{\sigma_{F}^{2}=\frac{\tilde{s}_{F}^{2}}{\Delta t}}
+\]</div>
+</section>
+<section id="setting-the-variance-in-a-simulation">
+<h2>Setting the variance in a simulation:<a class="headerlink" href="#setting-the-variance-in-a-simulation" title="Permalink to this heading">#</a></h2>
+<section id="preferred-method-fixing-spetral-density-tilde-s-f">
+<h3>Preferred Method: Fixing spetral density <span class="math notranslate nohighlight">\(\tilde s_F\)</span><a class="headerlink" href="#preferred-method-fixing-spetral-density-tilde-s-f" title="Permalink to this heading">#</a></h3>
+<p>When simulating a Hasselmann model discretely, we need to set the
+variance of the discretized forcing vector <span class="math notranslate nohighlight">\(F_{n}\)</span>. IF we want the
+process to have the same process spectra regardless of sampling interval
+or length, we need to to rescale the variance we impose by <span class="math notranslate nohighlight">\(F_{n}\)</span>
+by <span class="math notranslate nohighlight">\(1/\Delta t\)</span>. In practice, that means that we would fix
+a value for <span class="math notranslate nohighlight">\(\tilde{s}_{F}\)</span> and then draw a random vector <span class="math notranslate nohighlight">\(F_{n}\)</span>
+that has standard deviation <span class="math notranslate nohighlight">\(\sigma_{F}=\tilde{s}_{F}/\sqrt{\Delta t}\)</span>.
+This way, the spectral quantities that we try to estimate, such as the power-spectral
+density of <span class="math notranslate nohighlight">\(F\)</span> and temperature <span class="math notranslate nohighlight">\(T\)</span> do not depend
+on our choice of numerical discretization.</p>
+<p>The figure below shows three simulations of a white noise process with the same <em>process</em> variance density <span class="math notranslate nohighlight">\(\tilde s_F^2=1\)</span>. Note that because we are only simulating a short interval the estimated spectral density of the sample varies around 1. Also note that we are only plotting positive frequencies.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## </span>
+
+<span class="c1"># Fix the Spectral Variance Density sf^2</span>
+<span class="n">specdens</span><span class="o">=</span><span class="mf">1.5</span><span class="p">;</span>
+
+<span class="c1"># A vector of three different sampling intervals</span>
+<span class="n">dt_vec</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span>
+
+<span class="c1"># Total Simulation time</span>
+<span class="n">T_total</span><span class="o">=</span><span class="mi">7</span><span class="o">*</span><span class="mi">4</span><span class="o">*</span><span class="mi">20</span><span class="p">;</span>
+
+<span class="c1">#set up figure</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">16</span><span class="p">,</span><span class="mi">8</span><span class="p">])</span>
+
+<span class="k">for</span> <span class="n">i_dt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    
+    <span class="c1">#sampling interval</span>
+    <span class="n">dt</span><span class="o">=</span><span class="n">dt_vec</span><span class="p">[</span><span class="n">i_dt</span><span class="p">]</span>
+    <span class="c1">#time vector</span>
+    <span class="n">t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">T_total</span><span class="p">,</span><span class="n">dt</span><span class="p">)</span>
+    
+    <span class="c1">#total number of points:</span>
+    <span class="n">N</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">T_total</span><span class="o">/</span><span class="n">dt</span><span class="p">);</span>
+
+    <span class="c1"># normalize density of F by \sqrt(dt). Not that spec</span>
+    <span class="n">var_F</span><span class="o">=</span><span class="n">specdens</span><span class="o">/</span><span class="n">dt</span>
+    <span class="n">sigma_F</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">var_F</span><span class="p">)</span>
+    
+    <span class="c1">#simulate a white noise process:</span>
+    <span class="n">F</span><span class="o">=</span><span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">scale</span><span class="o">=</span><span class="n">sigma_F</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">);</span>
+
+    <span class="c1">#compute the spectrum</span>
+    <span class="n">out</span><span class="o">=</span><span class="n">mtspec</span><span class="o">.</span><span class="n">MTSpec</span><span class="p">(</span><span class="n">F</span><span class="p">,</span><span class="n">nw</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">,</span><span class="n">kspec</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">iadapt</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">freq</span><span class="o">=</span><span class="n">out</span><span class="o">.</span><span class="n">freq</span>
+    <span class="n">S_FF</span> <span class="o">=</span><span class="n">out</span><span class="o">.</span><span class="n">spec</span>
+    <span class="n">S_FF</span><span class="o">=</span><span class="n">S_FF</span><span class="p">[</span><span class="n">freq</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">freq</span><span class="o">=</span><span class="n">freq</span><span class="p">[</span><span class="n">freq</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">]</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">i_dt</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">F</span><span class="p">,</span><span class="s1">&#39;.-&#39;</span><span class="p">)</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;var$(F)$=&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">F</span><span class="p">),</span><span class="mi">2</span><span class="p">)))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time [yrs]&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+    
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">i_dt</span><span class="o">+</span><span class="mi">4</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span><span class="n">S_FF</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">specdens</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">freq</span><span class="p">),</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;process density $S_</span><span class="si">{FF}</span><span class="s1">=$&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">specdens</span><span class="p">))</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;var$(X)=\int_{-f_N}^</span><span class="si">{f_N}</span><span class="s1"> S_</span><span class="si">{FF}</span><span class="s1">df=$ &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">F</span><span class="p">),</span><span class="mi">2</span><span class="p">)))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$S_</span><span class="si">{FF}</span><span class="s1">$&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$f\; [1/yr]$&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../../_images/783e1bade6d885a9402e8a9e1f8342dbe3dbc7f8cd645464de7ca73254f55c40.png" src="../../_images/783e1bade6d885a9402e8a9e1f8342dbe3dbc7f8cd645464de7ca73254f55c40.png" />
+</div>
+</div>
+<p>There are a few other alternatives,</p>
+</section>
+<section id="alternative-fixing-sigma-f-delta-t-is-sampling-time">
+<h3>Alternative: Fixing <span class="math notranslate nohighlight">\(\sigma_{F}\)</span> (<span class="math notranslate nohighlight">\(\Delta t\)</span> is sampling time)<a class="headerlink" href="#alternative-fixing-sigma-f-delta-t-is-sampling-time" title="Permalink to this heading">#</a></h3>
+<p>A second option for simulating a Hasselmann model is to set <span class="math notranslate nohighlight">\(\sigma_{F}\)</span>,
+i.e the variance of the time-domain vector <span class="math notranslate nohighlight">\(F(t_{n})\)</span>. This might
+seem the easiest version, since <span class="math notranslate nohighlight">\(\sigma_{F}\)</span> is what we actually
+provide python when drawing saples from a random vector. However,
+in this scenario, the spectral density of <span class="math notranslate nohighlight">\(F\)</span> will change if we change
+<span class="math notranslate nohighlight">\(\Delta t\)</span>.</p>
+<p>A scenario where a white noise process has the same variance regardless
+of time-step is (more-or-less) equivalent to plucking data points
+at a time-step <span class="math notranslate nohighlight">\(\Delta t\)</span>. For example, if we compare a dataset with
+<span class="math notranslate nohighlight">\(\Delta t=1\)</span> day and one with <span class="math notranslate nohighlight">\(\Delta t=1\)</span> month and they have the
+same variance, this is as if the data that is collected every month
+is actually just daily data collected only day per month.</p>
+<p>In this case, the power spectral density we would estimate for <span class="math notranslate nohighlight">\(F\)</span>
+is <span class="math notranslate nohighlight">\(\hat{\tilde{s}}_{F}^{2}=\sigma_{F}^{2}\Delta t\)</span>. So as we increase
+the time-step, we would get higher spectral densities.</p>
+<p>A more realistic interpretation is that the spectral power at frequencies higher
+than the highest accessible frequency <span class="math notranslate nohighlight">\(f_{N}\)</span> is getting aliased
+back into our spectral estimate between <span class="math notranslate nohighlight">\(-f_{N}\)</span> and <span class="math notranslate nohighlight">\(f_{N}\)</span></p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># A vector of three different sampling intervals</span>
+<span class="n">dt_vec</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.5</span><span class="p">]</span>
+
+<span class="c1"># Total Simulation time</span>
+<span class="n">T_total</span><span class="o">=</span><span class="mi">100</span><span class="p">;</span>
+
+
+<span class="c1">#standard deviation sigma_f of the discrete white noise proces </span>
+<span class="c1"># var(F) = sigma_F^2</span>
+<span class="n">sigma_F</span><span class="o">=</span><span class="mi">3</span><span class="p">;</span>
+
+
+<span class="c1">#set up figure</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">16</span><span class="p">,</span><span class="mi">8</span><span class="p">])</span>
+
+<span class="k">for</span> <span class="n">i_dt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    
+    <span class="c1">#sampling interval</span>
+    <span class="n">dt</span><span class="o">=</span><span class="n">dt_vec</span><span class="p">[</span><span class="n">i_dt</span><span class="p">]</span>
+    <span class="c1">#time vector</span>
+    <span class="n">t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">T_total</span><span class="p">,</span><span class="n">dt</span><span class="p">)</span>
+    
+    <span class="c1">#total number of points:</span>
+    <span class="n">N</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">T_total</span><span class="o">/</span><span class="n">dt</span><span class="p">);</span>
+
+    <span class="c1">#simulate a white noise process:</span>
+    <span class="n">F</span><span class="o">=</span><span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">scale</span><span class="o">=</span><span class="n">sigma_F</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">);</span>
+
+    <span class="c1">#compute the spectrum</span>
+    <span class="n">out</span><span class="o">=</span><span class="n">mtspec</span><span class="o">.</span><span class="n">MTSpec</span><span class="p">(</span><span class="n">F</span><span class="p">,</span><span class="n">nw</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">,</span><span class="n">kspec</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">freq</span><span class="o">=</span><span class="n">out</span><span class="o">.</span><span class="n">freq</span>
+    <span class="n">S_FF</span> <span class="o">=</span><span class="n">out</span><span class="o">.</span><span class="n">spec</span>
+    <span class="n">S_FF</span><span class="o">=</span><span class="n">S_FF</span><span class="p">[</span><span class="n">freq</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">freq</span><span class="o">=</span><span class="n">freq</span><span class="p">[</span><span class="n">freq</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">]</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">i_dt</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">F</span><span class="p">,</span><span class="s1">&#39;.-&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\Delta t=$&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span><span class="o">+</span><span class="sa">r</span><span class="s1">&#39;; $\sigma_F^2=$&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">sigma_F</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span><span class="o">+</span><span class="s1">&#39;; $var(F)$= &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">F</span><span class="p">),</span><span class="mi">2</span><span class="p">)))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">9</span><span class="p">,</span><span class="mi">15</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">i_dt</span><span class="o">+</span><span class="mi">3</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span><span class="n">S_FF</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">sigma_x</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">dt</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">freq</span><span class="p">),</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;mean density $\overline{\hat{S_</span><span class="si">{FF}</span><span class="s1">}}$=&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">S_FF</span><span class="p">),</span><span class="mi">2</span><span class="p">)))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$f_N=1/(2\Delta t)=$&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">freq</span><span class="p">),</span><span class="mi">2</span><span class="p">))</span><span class="o">+</span><span class="sa">r</span><span class="s1">&#39;; var$(F)=\int_{-f_N}^</span><span class="si">{f_N}</span><span class="s1"> S_</span><span class="si">{FF}</span><span class="s1">df=$ &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">F</span><span class="p">),</span><span class="mi">2</span><span class="p">)))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">9</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;frequency [1/t]&#39;</span><span class="p">);</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../../_images/ab68bda36f69ebf625e5752d98a16f67032c7caa9d24c30de56659cf86ab126c.png" src="../../_images/ab68bda36f69ebf625e5752d98a16f67032c7caa9d24c30de56659cf86ab126c.png" />
+</div>
+</div>
+</section>
+<section id="alternative-small-delta-t-then-averaging">
+<h3>Alternative: Small <span class="math notranslate nohighlight">\(\Delta t\)</span> then averaging<a class="headerlink" href="#alternative-small-delta-t-then-averaging" title="Permalink to this heading">#</a></h3>
+<p>A third, more realistic move would be to use to different timescales
+to simulate the fact that we are taking discrete averages of a continuous
+process. We would first choose a very small numerical time-step <span class="math notranslate nohighlight">\(\Delta t_{num}\)</span>
+at which to discretize the continuous Hasselmann equation, and assume
+that the forcing spectrum is zero at frequencies higher than <span class="math notranslate nohighlight">\(f=1/\left(2\Delta t_{N}\right).\)</span>
+We would then take block averages of larger <span class="math notranslate nohighlight">\(\Delta t\)</span> intervals</p>
+<p>Below I simulate a model using a numerical time-step of <span class="math notranslate nohighlight">\(\Delta t_{num}=1\)</span> meant to represent, for example, using a daily resolution, then take averages of <span class="math notranslate nohighlight">\(\Delta t=7\)</span> days and <span class="math notranslate nohighlight">\(\Delta t=28\)</span> days to represent using weekly or monthly averaged data.</p>
+<p>Notice that this scenario ends up being very similar to the first proposed way, of assuming the spectral density <span class="math notranslate nohighlight">\(S_FF\)</span> is zero at frequencies higher than the Nyquist frequency. This is because time-averaging is a form of a low-pass filter. In fact, moving average and sampling imparts a slightly different spectrum than a pure low-pass filter that sets all spectral power to zero above <span class="math notranslate nohighlight">\(1/(2\Delta t)\)</span> and keeps them the same at lower frequencies. But the details of low-pass filtering go beyond the scope of these notes.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Spectral density</span>
+<span class="n">specdens</span><span class="o">=</span><span class="mf">1.5</span><span class="p">;</span>
+
+<span class="c1"># original sampling interval (time-step)</span>
+<span class="n">dt_num</span><span class="o">=</span><span class="mi">1</span>
+
+<span class="c1"># Total Simulation time</span>
+<span class="n">T_total</span><span class="o">=</span><span class="mi">7</span><span class="o">*</span><span class="mi">4</span><span class="o">*</span><span class="mi">20</span><span class="p">;</span>
+
+<span class="n">N</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">T_total</span><span class="o">/</span><span class="n">dt_num</span><span class="p">);</span>
+
+<span class="c1"># A vector of three different sampling intervals</span>
+<span class="n">dt_vec</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="o">*</span><span class="mi">4</span><span class="p">]</span>
+
+<span class="c1">#set up figure</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">])</span>
+
+<span class="c1">#simulate one process</span>
+<span class="n">var_F</span><span class="o">=</span><span class="n">specdens</span><span class="o">/</span><span class="n">dt_orig</span>
+<span class="n">sigma_F</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">var_F</span><span class="p">);</span>
+<span class="n">F_orig</span><span class="o">=</span><span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">scale</span><span class="o">=</span><span class="n">sigma_F</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">);</span>
+
+
+<span class="k">for</span> <span class="n">i_dt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    
+    <span class="c1">#take averages of lenth dt</span>
+    <span class="n">dt</span><span class="o">=</span><span class="n">dt_vec</span><span class="p">[</span><span class="n">i_dt</span><span class="p">]</span>
+
+    <span class="c1">#how many samples go in an average?</span>
+    <span class="n">dn</span><span class="o">=</span><span class="n">dt</span><span class="o">/</span><span class="n">dt_orig</span>
+    
+    <span class="c1">#locs=np.arange(0,N,dn).astype(&#39;int&#39;)</span>
+    <span class="c1">#coarse time vector</span>
+    <span class="n">t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">T_total</span><span class="p">,</span><span class="n">dt_vec</span><span class="p">[</span><span class="n">i_dt</span><span class="p">])</span>
+    
+    <span class="c1">#take block averages</span>
+    <span class="n">F</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">F_orig</span><span class="p">,[</span><span class="nb">int</span><span class="p">(</span><span class="n">N</span><span class="o">/</span><span class="n">dn</span><span class="p">),</span><span class="nb">int</span><span class="p">(</span><span class="n">dn</span><span class="p">)])</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span> 
+
+    <span class="c1">#compute the spectrum</span>
+    <span class="n">out</span><span class="o">=</span><span class="n">mtspec</span><span class="o">.</span><span class="n">MTSpec</span><span class="p">(</span><span class="n">F</span><span class="p">,</span><span class="n">nw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span><span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">,</span><span class="n">kspec</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">iadapt</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">freq</span><span class="o">=</span><span class="n">out</span><span class="o">.</span><span class="n">freq</span>
+    <span class="n">S_FF</span><span class="o">=</span><span class="n">out</span><span class="o">.</span><span class="n">spec</span>
+    <span class="n">S_FF</span><span class="o">=</span><span class="n">S_FF</span><span class="p">[</span><span class="n">freq</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">freq</span><span class="o">=</span><span class="n">freq</span><span class="p">[</span><span class="n">freq</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">]</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">F</span><span class="p">,</span><span class="s1">&#39;.-&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="n">i_dt</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">markersize</span><span class="o">=</span><span class="mi">7</span><span class="o">*</span><span class="p">(</span><span class="n">i_dt</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\Delta t=$ &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">dt</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span><span class="n">S_FF</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">specdens</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">freq</span><span class="p">),</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;process $S_</span><span class="si">{ff}</span><span class="s1">$&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mf">1E-1</span><span class="p">,</span><span class="mf">1E1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mf">1E-3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../../_images/b94ed0ff71b191d0395b55331c111239bbfa3eba50c1c0cc521d816c3da7b12a.png" src="../../_images/b94ed0ff71b191d0395b55331c111239bbfa3eba50c1c0cc521d816c3da7b12a.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="theoretical-spectra">
+<h1>4. Theoretical Spectra<a class="headerlink" href="#theoretical-spectra" title="Permalink to this heading">#</a></h1>
+<p>We now have everythign in place to theoretically compute the spectrum
+of Hasselmann-type models.</p>
+<section id="power-spectrum-of-the-standard-hasselmann-model">
+<h2>Power Spectrum of the standard Hasselmann Model.<a class="headerlink" href="#power-spectrum-of-the-standard-hasselmann-model" title="Permalink to this heading">#</a></h2>
+<p>Let’s first solve for the theoretical spectrum of a Hasselmann model,
+and compare it with a simulation of the Hasselmann model using a time-step
+<span class="math notranslate nohighlight">\(\Delta t\)</span>. Remember, the Hasselmann model is</p>
+<div class="math notranslate nohighlight">
+\[
+C\frac{dT}{dt}=-\lambda T+F
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(F\)</span> is white noise, at least at frequencies higher than the
+sampling frequency <span class="math notranslate nohighlight">\(\left|f\right|&lt;f_{N}=1/\left(2\Delta t\right)\)</span>.</p>
+<p>The power spectrum of the Hasselmann model can be solved for by taking
+the Fourier Transform of the differential equation:</p>
+<div class="math notranslate nohighlight">
+\[
+i\omega C\tilde{T}\left(\omega\right)=-\lambda\tilde{T}\left(\omega\right)+\tilde{F}\left(\omega\right)
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\tilde{T}\left(\omega\right)=\frac{\tilde{F}\left(\omega\right)}{\lambda+i\omega C}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\tilde{T}\left(\omega\right)=\frac{1}{\lambda}\frac{\tilde{F}\left(\omega\right)}{1+i\omega\tau_{0}}
+\]</div>
+<p>The spectrum can be computed as:</p>
+<div class="math notranslate nohighlight">
+\[
+S_{TT}\left(\omega\right)=\left\langle \tilde{T}\left(\omega\right)\tilde{T}\left(\omega\right)^{*}\right\rangle =\left\langle \frac{1}{\lambda}\frac{\tilde{F}\left(\omega\right)}{1+i\omega\tau_{0}}\frac{1}{\lambda}\frac{\tilde{F}^{*}\left(\omega\right)}{1-i\omega\tau_{0}}\right\rangle =\frac{1}{\lambda^{2}}\frac{\left\langle \tilde{F}\left(\omega\right)\tilde{F}^{*}\left(\omega\right)\right\rangle }{1+\omega^{2}\tau_{0}^{2}}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+S_{TT}\left(\omega\right)=\frac{S_{FF}\left(\omega\right)}{\lambda^{2}}\frac{1}{1+\omega^{2}\tau_{0}^{2}}
+\]</div>
+<p>Using the fact that the a white-noise process has a constant spectral
+variance density:</p>
+<div class="math notranslate nohighlight">
+\[
+S_{FF}\left(\omega\right)=\tilde{s}_{F}^{2}
+\]</div>
+<p>we have the spectrum of a Hasselmann model forced with white noise.</p>
+<div class="math notranslate nohighlight">
+\[
+S_{TT}\left(\omega\right)=\frac{\tilde{s}_{F}^{2}}{\lambda^{2}}\frac{1}{1+\omega^{2}\tau_{0}^{2}}=\frac{\tilde{s}_{F}^{2}}{\lambda^{2}+\omega^{2}C^{2}}
+\]</div>
+<p>If we want to check this spectrum against a numerical simulation where
+we used a time-step of <span class="math notranslate nohighlight">\(\Delta t\)</span> and set a variance <span class="math notranslate nohighlight">\(\sigma_{F}\)</span>
+for the forcing vector <span class="math notranslate nohighlight">\(F_{n}\)</span>, we get:</p>
+<div class="math notranslate nohighlight">
+\[
+\boxed{S_{TT}\left(\omega\right)=\frac{\sigma_{F}^{2}\Delta t}{\lambda^{2}}\frac{1}{1+\omega^{2}\tau_{0}^{2}}=\frac{\sigma_{F}^{2}\Delta t}{\lambda^{2}+\omega^{2}C{}^{2}}}
+\]</div>
+<p>Writing it in this way is useful if, say, we want to model the spectrum
+of monthly surface temperatures as a function of the variance of monthly
+variations in surface heat flux forcing</p>
+</section>
+<section id="asymptotic-behaviour">
+<h2>Asymptotic behaviour<a class="headerlink" href="#asymptotic-behaviour" title="Permalink to this heading">#</a></h2>
+<p>In the limit of high frequencies (short time-scales): <span class="math notranslate nohighlight">\(\omega\gg\tau_{0}\)</span>.
+i.e. <span class="math notranslate nohighlight">\(f\gg\frac{1}{2\pi\tau_{0}}\)</span> the dominant balance in the denominator
+becomes <span class="math notranslate nohighlight">\(\omega^{2}\tau_{0}^{2}\gg1\)</span> and the power spectrum asymptomes
+to <span class="math notranslate nohighlight">\(S_{TT}\sim\frac{\tilde{s}_{F}^{2}}{\lambda^{2}\tau_{0}^{2}}\frac{1}{\omega^{2}}\)</span>
+which obbeys a power law scaling of <span class="math notranslate nohighlight">\(S_{TT}\sim f^{-2}\)</span> or <span class="math notranslate nohighlight">\(\omega^{-2}\)</span>.</p>
+<p>In the limit of low frequencies (long time-scales): <span class="math notranslate nohighlight">\(\omega\ll\tau_{0}\)</span>.
+i.e. <span class="math notranslate nohighlight">\(f\ll\frac{1}{2\pi\tau_{0}}\)</span> , the dominant balance is reversed,
+with <span class="math notranslate nohighlight">\(1\gg\omega\tau_{0}^{2}\)</span> and the spectrum asymptotes to: <span class="math notranslate nohighlight">\(S_{TT}\left(\omega\right)\sim\frac{\tilde{s}_{F}^{2}}{\lambda^{2}\tau_{0}^{2}}\)</span></p>
+<p>As you can see from the figure there are essentially two pieces of
+information in the spectrum: the spectral density at which it tapers
+of, which gives us an estimate for <span class="math notranslate nohighlight">\(\tilde{s}_{F}^{2}/\lambda^{2}\)</span>
+and the characteristic time-scale <span class="math notranslate nohighlight">\(\tau_{0}\)</span>, identifiable from the
+roll-off frequency. Only having information about the power-spectrum
+of temperature does not allow us to constrain both the variance of
+the forcing, <span class="math notranslate nohighlight">\(\sigma_{F}^{2}\)</span> \emph{and }the feedback <span class="math notranslate nohighlight">\(\lambda\)</span>,
+only their ratio.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">])</span>
+
+<span class="c1">#physical parameters:</span>
+<span class="n">sigma_F</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+<span class="n">tau</span><span class="o">=</span><span class="mi">3</span><span class="p">;</span>
+<span class="n">l</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span>
+<span class="n">C</span><span class="o">=</span><span class="n">tau</span><span class="o">*</span><span class="n">l</span><span class="p">;</span>
+
+<span class="c1"># numerical parameters </span>
+<span class="n">dt</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">12</span>
+<span class="n">T</span><span class="o">=</span><span class="mi">500</span>
+
+<span class="c1">#compute other required variables</span>
+<span class="n">t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">dt</span><span class="p">)</span>
+<span class="n">N</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="n">phi</span><span class="o">=</span><span class="mi">1</span><span class="o">-</span><span class="p">(</span><span class="n">dt</span><span class="o">*</span><span class="n">l</span><span class="o">/</span><span class="n">C</span><span class="p">);</span>
+
+<span class="c1">#white noise forcing </span>
+<span class="n">F</span><span class="o">=</span><span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">scale</span><span class="o">=</span><span class="n">sigma_F</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
+<span class="n">eps</span><span class="o">=</span><span class="n">F</span><span class="o">*</span><span class="n">dt</span><span class="o">/</span><span class="n">C</span>
+
+<span class="c1">#integrate</span>
+<span class="n">T</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">):</span>
+    <span class="n">T</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="n">phi</span><span class="o">*</span><span class="n">T</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">eps</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+
+<span class="c1">#compute spectrum</span>
+<span class="n">out</span><span class="o">=</span><span class="n">mtspec</span><span class="o">.</span><span class="n">MTSpec</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">nw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">,</span><span class="n">kspec</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">f</span><span class="o">=</span><span class="n">out</span><span class="o">.</span><span class="n">freq</span>
+<span class="n">S_TT</span><span class="o">=</span><span class="n">out</span><span class="o">.</span><span class="n">spec</span>
+<span class="n">S_TT</span><span class="o">=</span><span class="n">S_TT</span><span class="p">[</span><span class="n">f</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">f</span><span class="o">=</span><span class="n">f</span><span class="p">[</span><span class="n">f</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1">#theory</span>
+<span class="n">S_TT_theory</span><span class="o">=</span><span class="n">sigma_F</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">dt</span><span class="o">/</span><span class="p">(</span><span class="n">l</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="p">(</span><span class="n">tau</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1">#plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span><span class="p">,</span><span class="n">S_TT</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Estimated (sample) spectrum: $\hat S_</span><span class="si">{XX}</span><span class="s1">(\omega)$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span><span class="p">,</span><span class="n">S_TT_theory</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Theory: $S_</span><span class="si">{TT}</span><span class="s1">(\omega)=\frac{\sigma_</span><span class="si">{F}</span><span class="s1">^</span><span class="si">{2}</span><span class="s1">\cdot\Delta t}{\lambda^</span><span class="si">{2}</span><span class="s1">}\frac</span><span class="si">{1}</span><span class="s1">{1+\tau_</span><span class="si">{0}</span><span class="s1">^</span><span class="si">{2}</span><span class="s1">\omega^</span><span class="si">{2}</span><span class="s1">}$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;f&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$S_</span><span class="si">{TT}</span><span class="s1">$&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$S_{TT}$&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/0093994fb2b6bf42896ef6a9c4316fb62a4d74abd5df4c4b145edb391c40091b.png" src="../../_images/0093994fb2b6bf42896ef6a9c4316fb62a4d74abd5df4c4b145edb391c40091b.png" />
+</div>
+</div>
+<p>In practice we may also have measurements of the net heat flux <span class="math notranslate nohighlight">\(Q=-\lambda T+F\)</span>.
+The spectrum of <span class="math notranslate nohighlight">\(Q\)</span> will be:</p>
+<div class="math notranslate nohighlight">
+\[
+\tilde{Q}\left(\omega\right)=-\frac{1}{1+i\omega\tau_{0}}\tilde{F}\left(\omega\right)+\tilde{F}\left(\omega\right)
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\tilde{Q}\left(\omega\right)=\frac{i\omega\tau_{0}}{1+i\omega\tau_{0}}\tilde{F}\left(\omega\right)
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+S_{QQ}\left(\omega\right)=\tilde{s}_{F}^{2}\frac{\omega^{2}\tau_{0}^{2}}{1+\omega^{2}\tau_{0}^{2}}
+\]</div>
+<p>Between the estimate of two spectra, <span class="math notranslate nohighlight">\(S_{TT}\)</span> and <span class="math notranslate nohighlight">\(S_{QQ}\)</span>, we now
+have enough pieces of information to constrain all of <span class="math notranslate nohighlight">\(\lambda,\tau_{0}\)</span>
+and <span class="math notranslate nohighlight">\(\sigma_{F}^{2}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#compute spectrum</span>
+<span class="n">Q</span><span class="o">=-</span><span class="n">l</span><span class="o">*</span><span class="n">T</span><span class="o">+</span><span class="n">F</span>
+<span class="n">out_Q</span><span class="o">=</span><span class="n">mtspec</span><span class="o">.</span><span class="n">MTSpec</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span><span class="n">nw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">,</span><span class="n">kspec</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">f</span><span class="o">=</span><span class="n">out_Q</span><span class="o">.</span><span class="n">freq</span>
+<span class="n">S_QQ</span><span class="o">=</span><span class="n">out_Q</span><span class="o">.</span><span class="n">spec</span>
+<span class="n">S_QQ</span><span class="o">=</span><span class="n">S_QQ</span><span class="p">[</span><span class="n">f</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">f</span><span class="o">=</span><span class="n">f</span><span class="p">[</span><span class="n">f</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1">#theory</span>
+<span class="n">S_QQ_theory</span><span class="o">=</span><span class="n">sigma_F</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">dt</span> <span class="o">*</span> <span class="p">((</span><span class="n">tau</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="p">(</span><span class="n">tau</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1">#plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span><span class="p">,</span><span class="n">S_QQ</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Estimated (sample) spectrum: $\hat S_</span><span class="si">{QQ}</span><span class="s1">(\omega)$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span><span class="p">,</span><span class="n">S_QQ_theory</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Theory: $S_</span><span class="si">{QQ}</span><span class="s1">(\omega)=\sigma_</span><span class="si">{F}</span><span class="s1">^</span><span class="si">{2}</span><span class="s1">\cdot\Delta t\frac{\tau_</span><span class="si">{0}</span><span class="s1">^</span><span class="si">{2}</span><span class="s1">\omega^</span><span class="si">{2}</span><span class="s1">}{1+\tau_</span><span class="si">{0}</span><span class="s1">^</span><span class="si">{2}</span><span class="s1">\omega^</span><span class="si">{2}</span><span class="s1">}$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;f&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$S_</span><span class="si">{QQ}</span><span class="s1">$&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$S_{QQ}$&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/f832638306442a635354c776c177edc9c2679ce70d7f82328a68de9382ac8556.png" src="../../_images/f832638306442a635354c776c177edc9c2679ce70d7f82328a68de9382ac8556.png" />
+</div>
+</div>
+</section>
+<section id="cross-spectrum-of-the-standard-hasselmann-model">
+<h2>Cross Spectrum of the standard Hasselmann Model<a class="headerlink" href="#cross-spectrum-of-the-standard-hasselmann-model" title="Permalink to this heading">#</a></h2>
+<p>We can also can estimate cross power spectral density, such as <span class="math notranslate nohighlight">\(S_{QT}\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{cases}
+C\frac{dT}{dt}=-\lambda T+F\\
+Q=-\lambda T+F
+\end{cases}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{cases}
+\tilde{T}\left(\omega\right)=\frac{1}{\lambda}\frac{1}{1+i\omega\tau_{0}}\tilde{F}\left(\omega\right)\\
+\tilde{Q}\left(\omega\right)=-\frac{1}{1+i\omega\tau_{0}}\tilde{F}\left(\omega\right)+\tilde{F}\left(\omega\right)
+\end{cases}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{cases}
+\tilde{T}\left(\omega\right)=\frac{1}{\lambda}\frac{1}{1+i\omega\tau_{0}}\tilde{F}\left(\omega\right)\\
+\tilde{Q}\left(\omega\right)=\frac{i\omega\tau_{0}}{1+i\omega\tau_{0}}\tilde{F}\left(\omega\right)
+\end{cases}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[
+S_{QT}=\left\langle QT\right\rangle =\frac{\tilde{s}_{F}^{2}}{\lambda}\frac{i\omega\tau_{0}}{1+\omega^{2}\tau_{0}^{2}}
+\]</div>
+<p>The relation between two variables is also often estimated as the
+transfer function:</p>
+<div class="math notranslate nohighlight">
+\[
+H_{QT}=\frac{S_{QT}}{S_{TT}}=\lambda i\omega\tau_{0}
+\]</div>
+</section>
+<section id="a-model-with-two-different-sources-of-forcing">
+<h2>A model with two different sources of forcing:<a class="headerlink" href="#a-model-with-two-different-sources-of-forcing" title="Permalink to this heading">#</a></h2>
+<p>Now consider a Hasselmann model with two different sources of forcing
+and feedbacks, modelling the interaction of the mixed layer with both
+the atmosphere and the ocean. For starteres, let’s assume that the
+mixed layer temperature does not feed-back onto the ocean:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{cases}
+C\frac{dT}{dt}=-\lambda_{a}T+F_{a}+F_{o} &amp; \text{mixed layer energy budget}\\
+Q_{a}=-\lambda_{a}T+F_{a} &amp; \text{atmospheric heat fluxes}
+\end{cases}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[
+\tilde{T}\left(\omega\right)=\frac{1}{\lambda_{a}}\frac{\tilde{F}_{a}\left(\omega\right)+\tilde{F}_{o}\left(\omega\right)}{1+i\omega\tau_{0}}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+S_{TT}=\left\langle \tilde{T}\left(\omega\right)\tilde{T}^{*}\left(\omega\right)\right\rangle 
+\]</div>
+<p>Using the linearity property of the angle bracket operator, the above
+equation can be written as:</p>
+<div class="math notranslate nohighlight">
+\[
+S_{TT}=\frac{1}{\lambda_{a}}\frac{\left\langle \tilde{F}_{a}\tilde{F}_{a}^{*}\right\rangle +\left\langle \tilde{F}_{a}\tilde{F}_{o}^{*}\right\rangle +\left\langle \tilde{F}_{o}\tilde{F}_{a}^{*}\right\rangle +\left\langle \tilde{F}_{o}\tilde{F}_{o}^{*}\right\rangle }{1+\omega^{2}\tau_{0}^{2}}
+\]</div>
+<p>Since <span class="math notranslate nohighlight">\(F_{a}\)</span>and <span class="math notranslate nohighlight">\(F_{o}\)</span> are assumed to be white noise and independent
+processes, <span class="math notranslate nohighlight">\(\left\langle \tilde{F}_{a}\tilde{F}_{o}^{*}\right\rangle =\left\langle \tilde{F}_{o}\tilde{F}_{a}^{*}\right\rangle =0\)</span>,
+and the equation simplifies to:</p>
+<div class="math notranslate nohighlight">
+\[
+S_{TT}=\frac{1}{\lambda_{a}}\frac{\tilde{s}_{F_{a}}^{2}+\tilde{s}_{F_{o}}^{2}}{1+\omega^{2}\tau_{0}^{2}}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+Q=-\lambda_{a}\tilde{T}\left(\omega\right)+F_{a}=-\frac{\tilde{F}_{a}\left(\omega\right)+\tilde{F}_{o}\left(\omega\right)}{1+i\omega\tau_{0}}+\tilde{F}_{a}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+=\frac{i\omega\tau_{0}\tilde{F}_{a}\left(\omega\right)-\tilde{F}_{o}\left(\omega\right)}{1+i\omega\tau_{0}}
+\]</div>
+<p>With spectrum</p>
+<div class="math notranslate nohighlight">
+\[
+S_{QQ}=\left\langle QQ^{*}\right\rangle =\frac{1}{1+\omega^{2}\tau_{0}^{2}}\frac{\omega^{2}\tau^{2}\left\langle \tilde{F}_{a}\tilde{F}_{a}^{*}\right\rangle +i\omega\tau_{0}\left\langle \tilde{F}_{a}\tilde{F}_{o}^{*}\right\rangle +i\omega\tau_{o}\left\langle \tilde{F}_{o}\tilde{F}_{a}^{*}\right\rangle +\left\langle \tilde{F}_{o}\tilde{F}_{o}^{*}\right\rangle }{1+\omega^{2}\tau_{0}^{2}}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+S_{TT}=\frac{\omega^{2}\tau_{0}^{2}\tilde{s}_{F_{a}}^{2}+\tilde{s}_{F_{o}}^{2}}{1+\omega^{2}\tau_{0}^{2}}
+\]</div>
+<p>and cross spectrum:</p>
+<div class="math notranslate nohighlight">
+\[
+S_{QT}=\left\langle QT\right\rangle =\frac{1}{\lambda_{a}}\frac{1}{1+\omega^{2}\tau_{0}^{2}}\frac{i\omega\tau_{0}\left\langle \tilde{F}_{a}\tilde{F}_{a}^{*}\right\rangle +i\omega\tau_{0}\left\langle \tilde{F}_{a}\tilde{F}_{o}^{*}\right\rangle -\left\langle \tilde{F}_{o}\tilde{F}_{a}^{*}\right\rangle -\left\langle \tilde{F}_{o}\tilde{F}_{o}^{*}\right\rangle }{1+\omega^{2}\tau_{0}^{2}}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+S_{QT}=\frac{1}{\lambda_{a}}\frac{i\omega\tau_{0}\tilde{s}_{F_{a}}^{2}-\tilde{s}_{F_{o}}^{2}}{1+\omega^{2}\tau_{0}^{2}}
+\]</div>
+<p>leading to the transfer function:</p>
+<div class="math notranslate nohighlight">
+\[
+H_{QT}=\frac{S_{QT}}{S_{TT}}=\lambda_{a}\frac{i\omega\tau_{0}\tilde{s}_{F_{a}}^{2}-\tilde{s}_{F_{o}}^{2}}{\tilde{s}_{F_{a}}^{2}+\tilde{s}_{F_{o}}^{2}}
+\]</div>
+</section>
+<section id="to-do">
+<h2>To do:<a class="headerlink" href="#to-do" title="Permalink to this heading">#</a></h2>
+<section id="ocean-and-atmospheric-heat-fluxes-and-forcing">
+<h3>Ocean and atmospheric heat fluxes and forcing<a class="headerlink" href="#ocean-and-atmospheric-heat-fluxes-and-forcing" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{cases}
+C\frac{dT}{dt}=-\lambda_{a}T-\lambda_{0}T+F_{a}+F_{o} &amp; \text{mixed layer energy budget}\\
+Q_{a}=-\lambda_{a}T+F_{a} &amp; \text{atmospheric heat fluxes}\\
+Q_{o}=-\lambda_{o}T+F_{o} &amp; \text{ocean heat fluxes}
+\end{cases}
+\end{split}\]</div>
+<p>Compute the power spectra and cross-spectra:</p>
+<div class="math notranslate nohighlight">
+\[
+S_{TT},S_{Q_{a}Q_{a}},S_{Q_{o}Q_{o}},S_{Q_{o}T},S_{Q_{a}T}
+\]</div>
+<p>as a function of parameters <span class="math notranslate nohighlight">\(\theta=\left[C,\lambda_{a},\lambda_{o},\tilde{s}_{F_{a}},\tilde{s}_{F_{o}}\right]\)</span>
+. Note that since there are two feedbacks, we can no longer define
+a single characteristic time-scale <span class="math notranslate nohighlight">\(\tau_{0}\)</span>, so we should write
+these in terms of <span class="math notranslate nohighlight">\(C\)</span>.</p>
+</section>
+<section id="red-noise-ocean-process">
+<h3>Red noise ocean process<a class="headerlink" href="#red-noise-ocean-process" title="Permalink to this heading">#</a></h3>
+<p>Now let’s assume that ocean forcing is not white, but red. in other
+words,</p>
+<div class="math notranslate nohighlight">
+\[
+S_{F_{o}F_{o}}=\tilde{s}_{\eta}\frac{1}{1+\omega^{2}\tau_{1}^{2}}
+\]</div>
+<p>What are the spectra?
+$<span class="math notranslate nohighlight">\(
+S_{TT},S_{Q_{a}Q_{a}},S_{Q_{o}Q_{o}},S_{Q_{o}T},S_{Q_{a}T}
+\)</span><span class="math notranslate nohighlight">\(
+Simulate these numerically to check that the theoretical solutions
+are accurate. Try different values of \)</span>\tau_{1}<span class="math notranslate nohighlight">\( relative to \)</span>C/\lambda_{a}<span class="math notranslate nohighlight">\(
+and \)</span>C/\lambda_{o}<span class="math notranslate nohighlight">\(. Note that you will need to simulate a red noise
+forcing. You can do that by assuming that \)</span>F_{o}$ is itself a Hasselmann
+model:</p>
+<div class="math notranslate nohighlight">
+\[
+\tau\frac{dF_{o}}{dt}=-F_{o}+\eta
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\eta\)</span> is white noise.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content/Hasselmann"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="4_Theory.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">4. Theoretical Solutions</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">The Hasselmann model</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-preliminaries">1. Mathematical Preliminaries</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fourier-transforms">Fourier Transforms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-density-covariance">Spectral Density &amp; Covariance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#useful-properties-and-theorems">Useful Properties and Theorems</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2. The Hasselmann model</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-physical-basis-1-box-model">The Physical Basis: 1-Box model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discretizing-the-hasselmann-model-for-simulations">Discretizing the Hasselmann model for simulations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-power-spectrum">The power spectrum</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spetrum-of-white-noise-forcing">Spetrum of white noise forcing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-the-power-spectrum-of-a-hasselmann-model">Visualize the power spectrum of a Hasselmann model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spectrum-as-a-function-of-parameters">Spectrum as a function of parameters</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-discrete-stochastic-processes">3. Simulating discrete stochastic processes</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-problem-with-continuous-white-noise">The problem with continuous white noise</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nyquist-frequency-and-a-truncated-white-noise-spectrum">Nyquist frequency and a truncated white noise spectrum:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-the-variance-in-a-simulation">Setting the variance in a simulation:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preferred-method-fixing-spetral-density-tilde-s-f">Preferred Method: Fixing spetral density <span class="math notranslate nohighlight">\(\tilde s_F\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alternative-fixing-sigma-f-delta-t-is-sampling-time">Alternative: Fixing <span class="math notranslate nohighlight">\(\sigma_{F}\)</span> (<span class="math notranslate nohighlight">\(\Delta t\)</span> is sampling time)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alternative-small-delta-t-then-averaging">Alternative: Small <span class="math notranslate nohighlight">\(\Delta t\)</span> then averaging</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#theoretical-spectra">4. Theoretical Spectra</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#power-spectrum-of-the-standard-hasselmann-model">Power Spectrum of the standard Hasselmann Model.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#asymptotic-behaviour">Asymptotic behaviour</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-spectrum-of-the-standard-hasselmann-model">Cross Spectrum of the standard Hasselmann Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-model-with-two-different-sources-of-forcing">A model with two different sources of forcing:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#to-do">To do:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ocean-and-atmospheric-heat-fluxes-and-forcing">Ocean and atmospheric heat fluxes and forcing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#red-noise-ocean-process">Red noise ocean process</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Cristian Proistosescu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
