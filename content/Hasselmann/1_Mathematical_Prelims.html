@@ -69,7 +69,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="2. The Hasselmann model" href="2_Hasselmann_model.html" />
-    <link rel="prev" title="SIMLES" href="../../intro.html" />
+    <link rel="prev" title="CDDS Notes" href="../../intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -169,7 +169,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../../intro.html">
-                    SIMLES
+                    CDDS Notes
                 </a>
             </li>
         </ul>
@@ -423,8 +423,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fourier-transforms">Fourier Transforms</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-density-covariance">Spectral Density &amp; Covariance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions-fourier-transforms">Definitions: Fourier Transforms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions-spectral-density-covariance">Definitions: Spectral Density &amp; Covariance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#useful-properties-and-theorems">Useful Properties and Theorems</a></li>
 </ul>
             </nav>
@@ -439,11 +439,12 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="mathematical-preliminaries">
 <h1>1. Mathematical Preliminaries<a class="headerlink" href="#mathematical-preliminaries" title="Permalink to this heading">#</a></h1>
-<section id="fourier-transforms">
-<h2>Fourier Transforms<a class="headerlink" href="#fourier-transforms" title="Permalink to this heading">#</a></h2>
+<p>Here we will refresh some definitions and properties of Fourier Analysis. The math we use will not be rigurous, but it will be, hopefully, consistent.</p>
+<section id="definitions-fourier-transforms">
+<h2>Definitions: Fourier Transforms<a class="headerlink" href="#definitions-fourier-transforms" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Fourier Transform, and it’s inverse, which can be written either in
-terms of frequency <span class="math notranslate nohighlight">\(f\)</span> or angular freuency <span class="math notranslate nohighlight">\(\omega.\)</span></p></li>
+<li><p><strong>The Fourier transform</strong>, and its inverse can be written either in
+terms of frequency <span class="math notranslate nohighlight">\(f\)</span> or angular freuency <span class="math notranslate nohighlight">\(\omega=2\pi f\)</span>. Their definitions are:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[ \mathscr{F}\left\{ X(t)\right\} =\int_{-\infty}^{+\infty}X(t)e^{-2\pi ift}dt=\tilde{X}\left(f\right)\]</div>
@@ -461,10 +462,7 @@ terms of frequency <span class="math notranslate nohighlight">\(f\)</span> or an
 \]</div>
 <ul class="simple">
 <li><p>Unless otherwise noted, we will use <span class="math notranslate nohighlight">\(X\)</span> to denote time-domain functions
-<span class="math notranslate nohighlight">\(X(t)\)</span> and <span class="math notranslate nohighlight">\(\tilde{X}\)</span> to denote frequency domain functions, <span class="math notranslate nohighlight">\(\tilde{X}\left(f\right)\)</span>
-or <span class="math notranslate nohighlight">\(\tilde{X}\left(\omega\right)\)</span>. We will use the following notation
-two denote two quantities are related through a Fourier/Invers Fourier
-transformation:</p></li>
+<span class="math notranslate nohighlight">\(X(t)\)</span> and <span class="math notranslate nohighlight">\(\tilde{X}\)</span> to denote frequency-domain functions, <span class="math notranslate nohighlight">\(\tilde{X}\left(f\right)\)</span> or <span class="math notranslate nohighlight">\(\tilde{X}\left(\omega\right)\)</span>. We will use the following notation to denote two quantities related through a Fourier/Inverse Fourier transformation:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
@@ -472,7 +470,7 @@ X(t)\overset{\mathscr{F}}{\longleftrightarrow}\tilde{X}(f)
 \]</div>
 <ul class="simple">
 <li><p><strong>Nyquist frequency:</strong> for discrete time-series evaluated at
-discrete time-steps <span class="math notranslate nohighlight">\(t_{i}\)</span> separated by <span class="math notranslate nohighlight">\(\Delta t=t_{i+1}-t_{i}\)</span>
+discrete time points <span class="math notranslate nohighlight">\(t_{i}\)</span> separated by a time step <span class="math notranslate nohighlight">\(\Delta t=t_{i+1}-t_{i}\)</span>,
 the Fourier Transform can only be evaluated at frequencies up to the
 sampling frequency, also called the Nyquist frequency</p></li>
 </ul>
@@ -480,14 +478,12 @@ sampling frequency, also called the Nyquist frequency</p></li>
 \[
 f_{N}=\frac{1}{2\Delta t}.
 \]</div>
-<p>It is not possible to estimate energy at freuencies higher than the
-Nyquist frequncy without more finely resolved data.</p>
+<p>It is not possible to estimate energy at frequencies higher than the
+Nyquist frequency without more finely resolved data.</p>
 </section>
-<section id="spectral-density-covariance">
-<h2>Spectral Density &amp; Covariance<a class="headerlink" href="#spectral-density-covariance" title="Permalink to this heading">#</a></h2>
-<p>Here we will refresh some definitions and properties of Fourier Analysis.
-The math we use will not be rigurous, but it will be, hopefully, consistent.</p>
-<p>Wikipedia has some decent coverage of spectral analysis.</p>
+<section id="definitions-spectral-density-covariance">
+<h2>Definitions: Spectral Density &amp; Covariance<a class="headerlink" href="#definitions-spectral-density-covariance" title="Permalink to this heading">#</a></h2>
+<p>Wikipedia has some good resources on <a class="reference external" href="https://en.wikipedia.org/wiki/Spectral_density">spectral density</a>.</p>
 <ul class="simple">
 <li><p>The <strong>cross power spectral density</strong> of two variables is:</p></li>
 </ul>
@@ -495,25 +491,14 @@ The math we use will not be rigurous, but it will be, hopefully, consistent.</p>
 \[
 S_{XY}\left(\omega\right)=\left\langle \tilde{X}\left(\omega\right)\tilde{Y}^{*}\left(\omega\right)\right\rangle =\lim_{T\rightarrow\infty}\frac{1}{T}E\left[\tilde{X}\left(\omega\right)\tilde{Y}^{*}\left(\omega\right)\right]
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(T\)</span> is the total length of the signal and <span class="math notranslate nohighlight">\(*\)</span> denotes a complex
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(T\)</span> is the total length of the signal and <span class="math notranslate nohighlight">\(*\)</span> denotes a complex
 conjugate. In practice, we won’t have to deal with the limit or the
 expectation, as everything will eventually be written in terms of
-the power spectral density <span class="math notranslate nohighlight">\(\tilde{s}^{2}\)</span> of some noise forcing
-<span class="math notranslate nohighlight">\(\eta(t)\)</span>, where <span class="math notranslate nohighlight">\(\tilde{s}_{\eta}^{2}\left(\omega\right)=\left\langle \tilde{\eta}\left(\omega\right)\tilde{\eta}^{*}\left(\omega\right)\right\rangle \)</span>.
-As long as we are careful to properly scale the spectrum of the noise,
-the only other thing we need is the fact that the bracket notation
-<span class="math notranslate nohighlight">\(\left\langle \cdot\right\rangle \)</span> is linear.</p>
-<ul class="simple">
+the power spectral density <span class="math notranslate nohighlight">\(S_{\eta\eta}\left(\omega\right)=\left\langle \tilde{\eta}\left(\omega\right)\tilde{\eta}^{*}\left(\omega\right)\right\rangle \)</span> of some noise forcing <span class="math notranslate nohighlight">\(\eta(t)\)</span>. The only two things we will to compute spectral densities are the fact that the bracket operator <span class="math notranslate nohighlight">\(\left\langle \cdot\right\rangle \)</span> is linear, and care in scaling the power spectral density of the noise.</p></li>
 <li><p>The spectral density described above is what we will call the <strong>process</strong>
-spectral density. I.e. this is a parameter of the process. You can
-also think of it as the <em>true</em>spectral density of the underlying
-process that generated the data. When working with real data, we will
-only have access to finite samples of the processes <span class="math notranslate nohighlight">\(X(t)\)</span>
-and  <span class="math notranslate nohighlight">\(Y(t)\)</span> defined over a finite interval <span class="math notranslate nohighlight">\(T\)</span>. Thus, all
-we can do is get an <em>estimate</em> of the spectrum, which we will
-call the <strong>sample</strong> spectrum. For now we won’t worry about how
-to compute these estimates, and just use a library that estiamtes
-these quantities for us.</p></li>
+spectral density. You can think of it as the <em>true</em> spectral density of the underlying process that generated the data. When working with real data, we will
+only have access to finite samples of the processes <span class="math notranslate nohighlight">\(X(t)\)</span>  and  <span class="math notranslate nohighlight">\(Y(t)\)</span>, defined over a finite interval <span class="math notranslate nohighlight">\(T\)</span>. Thus, all we can do is get an <em>estimate</em> of the spectrum, which we will call the <strong>sample</strong> spectrum. For now we won’t worry about how to compute these estimates, and just use a library that estiamtes these quantities for us.</p></li>
 <li><p>The <strong>power spectral density (PSD}</strong>, or the auto-spectrum of
 a stochastic process <span class="math notranslate nohighlight">\(X\)</span> is:</p></li>
 </ul>
@@ -525,45 +510,41 @@ P_{X}\left(f\right)=S_{XX}\left(f\right)=\left\langle \tilde{X}\left(f\right)\ti
 <li><p>The <strong>cross-covariance</strong> function. At least for now, we will
 be dealing with anomalies from a mean, so we can assume <span class="math notranslate nohighlight">\(E(X(t))=E(Y(t))=0\)</span>.
 If ths is the case, the cross-covariance becomes equal to the cross-correlation
-function, and they both become</p></li>
+function, defined as:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
 C_{XY}(\tau)=\text{Cov}\left(X(t),Y(t+\tau)\right)=E\left[X(t)Y(t+\tau)\right]=\lim_{T\rightarrow\infty}\frac{1}{T}\int_{-\infty}^{\infty}X(t)Y(t+\tau)dt
 \]</div>
 <ul class="simple">
-<li><p><strong>White noise:</strong> process is an uncorrelated process, i.e. the
+<li><p>A <strong>white noise:</strong> process is an uncorrelated process, i.e. the
 covariance is only non-zero at zero lag. If <span class="math notranslate nohighlight">\(\delta_{\tau}\)</span> is a
 delta-function centered on zero, then:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
-C_{\eta\eta}\left(\tau\right)=E\left[X(t)Y(t+\tau)\right]=\delta_{\tau}\sigma^{2}
+C_{\eta\eta}\left(\tau\right)=E\left[\eta(t)\eta(t+\tau)\right]=\delta_{\tau}\sigma^{2}
 \]</div>
 </section>
 <section id="useful-properties-and-theorems">
 <h2>Useful Properties and Theorems<a class="headerlink" href="#useful-properties-and-theorems" title="Permalink to this heading">#</a></h2>
-<p>In practice, our derivations will make use of the following properties
-of the Fourier Transform, Spectral density, and covariance functions</p>
+<p>In practice, our derivations will make use of the following properties of the Fourier Transform, spectral density, and covariance functions:</p>
 <ul class="simple">
 <li><p>Fourier Transform of a time-derivative</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
-\boxed{\mathscr{F}\left\{ \frac{dx(t)}{dt}\right\} =i\omega\tilde{X}(\omega)}
+\boxed{\mathscr{F}\left\{ \frac{dX(t)}{dt}\right\} =i\omega\tilde{X}(\omega)}
 \]</div>
 <ul class="simple">
 <li><p>Linearity of cross spectral density:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
-\boxed{\left\langle a\left(\tilde{X}+\tilde{Y}\right)\tilde{Z}\right\rangle =a\left\langle \tilde{X}\tilde{Z}\right\rangle +a\left\langle \tilde{Y}\tilde{Z}\right\rangle }
+\boxed{\left\langle a\left(\tilde{X}(\omega)+\tilde{Y}(\omega)\right)\tilde{Z}^*(\omega)\right\rangle =a\left\langle \tilde{X}(\omega)\tilde{Z}^*(\omega)\right\rangle +a\left\langle \tilde{Y}(\omega)\tilde{Z}^*(\omega)\right\rangle }
 \]</div>
 <ul class="simple">
-<li><p>Expected auto-cross-spectrum (i.e. power spectrum) of a white noise
-process is a constant. In fact, this could be an alternative definition
-of ``white noise’’, with the <span class="math notranslate nohighlight">\(\delta\)</span>-function correlaton being
-a consequence. If <span class="math notranslate nohighlight">\(\eta(t)\)</span> is a white-noise process:</p></li>
+<li><p>Expected power spectrum of a white noise process is a constant. In fact, this could be an alternative definition of ``white noise’’, with the <span class="math notranslate nohighlight">\(\delta\)</span>-function correlaton being a consequence. If <span class="math notranslate nohighlight">\(\eta(t)\)</span> is a white-noise process:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
@@ -577,7 +558,7 @@ a consequence. If <span class="math notranslate nohighlight">\(\eta(t)\)</span> 
 \boxed{S_{XY}\left(\omega\right)=\left\langle \tilde{X}(\omega)\cdot\tilde{Y}(\omega)\right\rangle =0}
 \]</div>
 <ul class="simple">
-<li><p><strong>Wiener-Khinchin theorem</strong> linking lagged-covariance with cross-spectrum:</p></li>
+<li><p><strong>Wiener-Khinchin theorem</strong> links lagged-covariance with cross-spectrum:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
@@ -585,12 +566,12 @@ a consequence. If <span class="math notranslate nohighlight">\(\eta(t)\)</span> 
 \]</div>
 <ul class="simple">
 <li><p><strong>Parseval’s Theorem</strong> is equivalent to the Wiener-Khinchin theorem
-at <span class="math notranslate nohighlight">\(\tau=0\)</span>, where <span class="math notranslate nohighlight">\(C_{XX}\left(0\right)=var\left(X\right)\)</span>. Still,
+at <span class="math notranslate nohighlight">\(\tau=0\)</span>, where <span class="math notranslate nohighlight">\(C_{XX}\left(0\right)=\text{var}\left(X\right)\)</span>. Still,
 it is important enough that it is worth discussing it on its own:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
-\boxed{\sigma_{X}^{2}=var(X)=\int_{-\infty}^{\infty}S_{XX}\left(f\right)df}
+\boxed{\sigma_{X}^{2}=\text{var}(X)=\int_{-\infty}^{\infty}S_{XX}\left(f\right)df}
 \]</div>
 </section>
 </section>
@@ -631,7 +612,7 @@ it is important enough that it is worth discussing it on its own:</p></li>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">SIMLES</p>
+        <p class="prev-next-title">CDDS Notes</p>
       </div>
     </a>
     <a class="right-next"
@@ -659,8 +640,8 @@ it is important enough that it is worth discussing it on its own:</p></li>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fourier-transforms">Fourier Transforms</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-density-covariance">Spectral Density &amp; Covariance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions-fourier-transforms">Definitions: Fourier Transforms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions-spectral-density-covariance">Definitions: Spectral Density &amp; Covariance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#useful-properties-and-theorems">Useful Properties and Theorems</a></li>
 </ul>
   </nav></div>

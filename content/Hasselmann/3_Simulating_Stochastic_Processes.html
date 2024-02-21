@@ -169,7 +169,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../../intro.html">
-                    SIMLES
+                    CDDS Notes
                 </a>
             </li>
         </ul>
@@ -462,7 +462,7 @@ document.write(`
 <span class="kn">from</span> <span class="nn">multitaper</span> <span class="kn">import</span> <span class="n">mtspec</span>
 
 <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;legend.fontsize&#39;</span><span class="p">:</span> <span class="s1">&#39;x-large&#39;</span><span class="p">,</span>
-          <span class="s1">&#39;figure.figsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+          <span class="s1">&#39;figure.figsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>
           <span class="s1">&#39;axes.labelsize&#39;</span><span class="p">:</span> <span class="s1">&#39;x-large&#39;</span><span class="p">,</span>
          <span class="s1">&#39;axes.titlesize&#39;</span><span class="p">:</span><span class="s1">&#39;x-large&#39;</span><span class="p">,</span>
          <span class="s1">&#39;xtick.labelsize&#39;</span><span class="p">:</span><span class="s1">&#39;x-large&#39;</span><span class="p">,</span>
@@ -481,9 +481,9 @@ set the variance of the stochastic forcing <span class="math notranslate nohighl
 very careful when modeling discretized stochastic processes as the
 amount of variance may change when changing the time-step and the
 length of the time interval considered. The problem is that there
-is no well-defined continuous version of the white noise process.
-Parseval’s theorem illustrates the issue. If a white noise process
-<span class="math notranslate nohighlight">\(F(t)\)</span> has a constant spectral density <span class="math notranslate nohighlight">\(\tilde{s}_{F}^{2}\)</span></p>
+is no well-defined continuous version of a white noise process.
+Parseval’s theorem illustrates the issue: if a white noise process
+<span class="math notranslate nohighlight">\(F(t)\)</span> has a constant spectral density <span class="math notranslate nohighlight">\(\tilde{s}_{F}^{2}\)</span>, its variance would become infinite.</p>
 <div class="math notranslate nohighlight">
 \[
 var(F)=\int_{-\infty}^{\infty}\tilde{s}_{F}^{2}df=\tilde{s}_{F}^{2}\int_{-\infty}^{\infty}df=\infty
@@ -499,15 +499,12 @@ that weather is not correlated between this hour and the next hour.
 In reality, weather is only uncorrelated (or, `white’) at timescales
 longer than <span class="math notranslate nohighlight">\(\sim 2\)</span> weeks.</p>
 <p><strong>Side note:</strong> White noise can informally defined as the time-derivative
-of a Wiener process <span class="math notranslate nohighlight">\(F=dW/dt\)</span>, but I’ve been told by Wikipedia that
-is not something mathematicians look kindly upon. If we want to stay
-in the time-domain, one option is to model the Hasselmann equation
-as an Ornstein–Uhlenbeck Process:</p>
+of a <a class="reference external" href="https://en.wikipedia.org/wiki/Wiener_process">Wiener process</a> <span class="math notranslate nohighlight">\(F=dW/dt\)</span>, but I’ve been told that is not something mathematicians look kindly upon. If we want to stay in the time-domain, one option is to model the Hasselmann equation as an <a class="reference external" href="https://en.wikipedia.org/wiki/Ornstein%E2%80%93Uhlenbeck_process">Ornstein–Uhlenbeck Process</a>:</p>
 <div class="math notranslate nohighlight">
 \[
 dT=\tau_{0}^{-1}Tdt+\lambda^{-1}dW(t)
 \]</div>
-<p>where the ill defined <span class="math notranslate nohighlight">\(Fdt\)</span> is replaced by the well defined Wiener
+<p>where the ill-defined <span class="math notranslate nohighlight">\(Fdt\)</span> is replaced by the well defined Wiener
 process <span class="math notranslate nohighlight">\(dW\)</span>, a continuous version of the random walk. The problem
 is that once we move passed the simple one-dimensional Hasselmann
 model into more complex linear systems with more than one state variable
@@ -517,19 +514,15 @@ the case in the tropics.</p>
 </section>
 <section id="nyquist-frequency-and-a-truncated-white-noise-spectrum">
 <h2>Nyquist frequency and a truncated white noise spectrum:<a class="headerlink" href="#nyquist-frequency-and-a-truncated-white-noise-spectrum" title="Permalink to this heading">#</a></h2>
-<p>For a dataset sampled discretely at time intervals <span class="math notranslate nohighlight">\(\Delta t\)</span> - which
-is every dataset that we can measure or simulate, the sampling theorem
-(or Nyquist-Shannon theorem) tells us that we can only estimate the
-spectrum between frequencies <span class="math notranslate nohighlight">\(-f_{N}\)</span> and <span class="math notranslate nohighlight">\(f_{N}\)</span> where <span class="math notranslate nohighlight">\(f_{N}\)</span>
-is the Nyquist frequncy.</p>
+<p>For a dataset sampled discretely at time intervals <span class="math notranslate nohighlight">\(\Delta t\)</span> (which
+is every dataset that we can measure or simulate) Nyquist-Snannon sampling theorem
+tells us that we can only estimate the spectrum between frequencies <span class="math notranslate nohighlight">\(-f_{N}\)</span> and <span class="math notranslate nohighlight">\(f_{N}\)</span> where the Nyquist frequncy is</p>
 <div class="math notranslate nohighlight">
 \[
-f_{N}=\frac{1}{2\Delta t}
+f_{N}=\frac{1}{2\Delta t}. 
 \]</div>
 <p>More than that, the sampling theorem tells us that if there is spectral
-power at frequencies <span class="math notranslate nohighlight">\(\left|f\right|&gt;f_{N}\)</span> than this power will
-be aliased at frequencies smaller than the sampling frequency <span class="math notranslate nohighlight">\(\left|f\right|&lt;f_{N}\)</span>
-and thus bias our estimate of the variance in this range.</p>
+power at frequencies <span class="math notranslate nohighlight">\(\left|f\right|&gt;f_{N}\)</span> than this power will be aliased at frequencies smaller than the sampling frequency <span class="math notranslate nohighlight">\(\left|f\right|&lt;f_{N}\)</span> and thus bias our estimate of the variance in this range.</p>
 <p>Thus, the preferred option for simulating a Hasselmann model is to
 fix the spectral density of the forcing <span class="math notranslate nohighlight">\(F(t)\)</span>, and assume it is
 zero outside the Nyquist frequency <span class="math notranslate nohighlight">\(f_{N}\)</span>.</p>
@@ -556,14 +549,14 @@ frequency. In this case, the variance of the discrete time-series
 <section id="setting-the-variance-in-a-simulation-fixing-spetral-density-tilde-s-f">
 <h2>Setting the variance in a simulation: Fixing spetral density <span class="math notranslate nohighlight">\(\tilde s_F\)</span><a class="headerlink" href="#setting-the-variance-in-a-simulation-fixing-spetral-density-tilde-s-f" title="Permalink to this heading">#</a></h2>
 <p>When simulating a Hasselmann model discretely, we need to set the
-variance of the discretized forcing vector <span class="math notranslate nohighlight">\(F_{n}\)</span>. IF we want the
+variance of the discretized forcing vector <span class="math notranslate nohighlight">\(F_{n}\)</span>.</p>
+<p><em><strong>IF</strong></em> we want the
 process to have the same process spectra regardless of sampling interval
-or length, we need to to rescale the variance we impose by <span class="math notranslate nohighlight">\(F_{n}\)</span>
+or length, we need to to rescale the variance we impose on <span class="math notranslate nohighlight">\(F_{n}\)</span>
 by <span class="math notranslate nohighlight">\(1/\Delta t\)</span>. In practice, that means that we would fix
 a value for <span class="math notranslate nohighlight">\(\tilde{s}_{F}\)</span> and then draw a random vector <span class="math notranslate nohighlight">\(F_{n}\)</span>
 that has standard deviation <span class="math notranslate nohighlight">\(\sigma_{F}=\tilde{s}_{F}/\sqrt{\Delta t}\)</span>.
-This way, the spectral quantities that we try to estimate, such as the power-spectral
-density of <span class="math notranslate nohighlight">\(F\)</span> and temperature <span class="math notranslate nohighlight">\(T\)</span> do not depend
+This way, the spectral quantities that we try to estimate, such as the power-spectral density of <span class="math notranslate nohighlight">\(F\)</span> and temperature <span class="math notranslate nohighlight">\(T\)</span>, do not depend
 on our choice of numerical discretization.</p>
 <p>The figure below shows three simulations of a white noise process with the same <em>process</em> variance density <span class="math notranslate nohighlight">\(\tilde s_F^2=1\)</span>. Note that because we are only simulating a short interval the estimated spectral density of the sample varies around 1. Also note that we are only plotting positive frequencies.</p>
 <div class="cell tag_hide-input docutils container">
@@ -643,13 +636,13 @@ on our choice of numerical discretization.</p>
 </section>
 <section id="alternatives">
 <h2>Alternatives<a class="headerlink" href="#alternatives" title="Permalink to this heading">#</a></h2>
-<p>There are a few other alternatives,</p>
+<p>There are a few other alternatives for setting the variance of <span class="math notranslate nohighlight">\(F_n\)</span>.</p>
 <section id="fixing-sigma-f-delta-t-is-sampling-time">
 <h3>Fixing <span class="math notranslate nohighlight">\(\sigma_{F}\)</span> (<span class="math notranslate nohighlight">\(\Delta t\)</span> is sampling time)<a class="headerlink" href="#fixing-sigma-f-delta-t-is-sampling-time" title="Permalink to this heading">#</a></h3>
 <p>A second option for simulating a Hasselmann model is to set <span class="math notranslate nohighlight">\(\sigma_{F}\)</span>,
 i.e the variance of the time-domain vector <span class="math notranslate nohighlight">\(F(t_{n})\)</span>. This might
-seem the easiest version, since <span class="math notranslate nohighlight">\(\sigma_{F}\)</span> is what we actually
-provide python when drawing saples from a random vector. However,
+seem the easiest approach, since <span class="math notranslate nohighlight">\(\sigma_{F}\)</span> is what we actually
+provide python when drawing samples from a random vector. However,
 in this scenario, the spectral density of <span class="math notranslate nohighlight">\(F\)</span> will change if we change
 <span class="math notranslate nohighlight">\(\Delta t\)</span>.</p>
 <p>A scenario where a white noise process has the same variance regardless
@@ -660,10 +653,7 @@ same variance, this is as if the data that is collected every month
 is actually just daily data collected only day per month.</p>
 <p>In this case, the power spectral density we would estimate for <span class="math notranslate nohighlight">\(F\)</span>
 is <span class="math notranslate nohighlight">\(\hat{\tilde{s}}_{F}^{2}=\sigma_{F}^{2}\Delta t\)</span>. So as we increase
-the time-step, we would get higher spectral densities.</p>
-<p>A more realistic interpretation is that the spectral power at frequencies higher
-than the highest accessible frequency <span class="math notranslate nohighlight">\(f_{N}\)</span> is getting aliased
-back into our spectral estimate between <span class="math notranslate nohighlight">\(-f_{N}\)</span> and <span class="math notranslate nohighlight">\(f_{N}\)</span></p>
+the time-step, we would get higher spectral densities. This increase in power spectral density can be interpretated as arising from the fact that the spectral power at frequencies higher than the highest accessible frequency <span class="math notranslate nohighlight">\(f_{N}\)</span> is getting aliased back into our spectral estimate between <span class="math notranslate nohighlight">\(-f_{N}\)</span> and <span class="math notranslate nohighlight">\(f_{N}\)</span></p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -733,7 +723,7 @@ back into our spectral estimate between <span class="math notranslate nohighligh
 </section>
 <section id="small-delta-t-then-averaging">
 <h3>Small <span class="math notranslate nohighlight">\(\Delta t\)</span> then averaging<a class="headerlink" href="#small-delta-t-then-averaging" title="Permalink to this heading">#</a></h3>
-<p>A third, more realistic move would be to use to different timescales
+<p>A third, more realistic approach would be to use to different timescales
 to simulate the fact that we are taking discrete averages of a continuous
 process. We would first choose a very small numerical time-step <span class="math notranslate nohighlight">\(\Delta t_{num}\)</span>
 at which to discretize the continuous Hasselmann equation, and assume

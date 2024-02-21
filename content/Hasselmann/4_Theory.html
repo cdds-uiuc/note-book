@@ -168,7 +168,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../../intro.html">
-                    SIMLES
+                    CDDS Notes
                 </a>
             </li>
         </ul>
@@ -422,11 +422,15 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#power-spectrum-of-the-standard-hasselmann-model">Power Spectrum of the standard Hasselmann Model.</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#asymptotic-behaviour">Asymptotic behaviour</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#power-spectrum-of-the-standard-hasselmann-model">Power Spectrum of the standard Hasselmann Model.</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#asymptotic-behaviour">Asymptotic behaviour</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#power-spectrum-of-surface-heat-fluxes">Power Spectrum of surface heat fluxes:</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-spectrum-of-the-standard-hasselmann-model">Cross Spectrum of the standard Hasselmann Model</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-model-with-two-different-sources-of-forcing">A model with two different sources of forcing:</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#to-do">To do:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-check">Numerical Check</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ocean-and-atmospheric-heat-fluxes-and-forcing">Ocean and atmospheric heat fluxes and forcing</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#red-noise-ocean-process">Red noise ocean process</a></li>
 </ul>
@@ -485,10 +489,10 @@ and compare it with a simulation of the Hasselmann model using a time-step
 \[
 C\frac{dT}{dt}=-\lambda T+F
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(F\)</span> is white noise, at least at frequencies higher than the
-sampling frequency <span class="math notranslate nohighlight">\(\left|f\right|&lt;f_{N}=1/\left(2\Delta t\right)\)</span>.</p>
+<p>where <span class="math notranslate nohighlight">\(F\)</span> is white noise (at least at frequencies lower than the
+sampling frequency <span class="math notranslate nohighlight">\(\left|f\right|&lt;f_{N}=1/\left(2\Delta t\right)\)</span>).</p>
 <p>The power spectrum of the Hasselmann model can be solved for by taking
-the Fourier Transform of the differential equation:</p>
+the Fourier transform of the differential equation:</p>
 <div class="math notranslate nohighlight">
 \[
 i\omega C\tilde{T}\left(\omega\right)=-\lambda\tilde{T}\left(\omega\right)+\tilde{F}\left(\omega\right)
@@ -510,46 +514,27 @@ S_{TT}\left(\omega\right)=\left\langle \tilde{T}\left(\omega\right)\tilde{T}\lef
 \[
 S_{TT}\left(\omega\right)=\frac{S_{FF}\left(\omega\right)}{\lambda^{2}}\frac{1}{1+\omega^{2}\tau_{0}^{2}}
 \]</div>
-<p>Using the fact that the a white-noise process has a constant spectral
+<p>Using the fact that a white-noise process has a constant spectral
 variance density:</p>
 <div class="math notranslate nohighlight">
 \[
 S_{FF}\left(\omega\right)=\tilde{s}_{F}^{2}
 \]</div>
-<p>we have the spectrum of a Hasselmann model forced with white noise.</p>
+<p>we can write the spectrum of a Hasselmann model forced with white noise as:</p>
 <div class="math notranslate nohighlight">
 \[
 S_{TT}\left(\omega\right)=\frac{\tilde{s}_{F}^{2}}{\lambda^{2}}\frac{1}{1+\omega^{2}\tau_{0}^{2}}=\frac{\tilde{s}_{F}^{2}}{\lambda^{2}+\omega^{2}C^{2}}
 \]</div>
 <p>If we want to check this spectrum against a numerical simulation where
 we used a time-step of <span class="math notranslate nohighlight">\(\Delta t\)</span> and set a variance <span class="math notranslate nohighlight">\(\sigma_{F}\)</span>
-for the forcing vector <span class="math notranslate nohighlight">\(F_{n}\)</span>, we get:</p>
+for the forcing vector <span class="math notranslate nohighlight">\(F_{n}\)</span>, we can write:</p>
 <div class="math notranslate nohighlight">
 \[
 \boxed{S_{TT}\left(\omega\right)=\frac{\sigma_{F}^{2}\Delta t}{\lambda^{2}}\frac{1}{1+\omega^{2}\tau_{0}^{2}}=\frac{\sigma_{F}^{2}\Delta t}{\lambda^{2}+\omega^{2}C{}^{2}}}
 \]</div>
-<p>Writing it in this way is useful if, say, we want to model the spectrum
+<p>Writing it in this way is also useful if, say, we want to model the spectrum
 of monthly surface temperatures as a function of the variance of monthly
 variations in surface heat flux forcing</p>
-</section>
-<section id="asymptotic-behaviour">
-<h2>Asymptotic behaviour<a class="headerlink" href="#asymptotic-behaviour" title="Permalink to this heading">#</a></h2>
-<p>In the limit of high frequencies (short time-scales): <span class="math notranslate nohighlight">\(\omega\gg\tau_{0}\)</span>.
-i.e. <span class="math notranslate nohighlight">\(f\gg\frac{1}{2\pi\tau_{0}}\)</span> the dominant balance in the denominator
-becomes <span class="math notranslate nohighlight">\(\omega^{2}\tau_{0}^{2}\gg1\)</span> and the power spectrum asymptomes
-to <span class="math notranslate nohighlight">\(S_{TT}\sim\frac{\tilde{s}_{F}^{2}}{\lambda^{2}\tau_{0}^{2}}\frac{1}{\omega^{2}}\)</span>
-which obbeys a power law scaling of <span class="math notranslate nohighlight">\(S_{TT}\sim f^{-2}\)</span> or <span class="math notranslate nohighlight">\(\omega^{-2}\)</span>.</p>
-<p>In the limit of low frequencies (long time-scales): <span class="math notranslate nohighlight">\(\omega\ll\tau_{0}\)</span>.
-i.e. <span class="math notranslate nohighlight">\(f\ll\frac{1}{2\pi\tau_{0}}\)</span> , the dominant balance is reversed,
-with <span class="math notranslate nohighlight">\(1\gg\omega\tau_{0}^{2}\)</span> and the spectrum asymptotes to: <span class="math notranslate nohighlight">\(S_{TT}\left(\omega\right)\sim\frac{\tilde{s}_{F}^{2}}{\lambda^{2}\tau_{0}^{2}}\)</span></p>
-<p>As you can see from the figure there are essentially two pieces of
-information in the spectrum: the spectral density at which it tapers
-of, which gives us an estimate for <span class="math notranslate nohighlight">\(\tilde{s}_{F}^{2}/\lambda^{2}\)</span>
-and the characteristic time-scale <span class="math notranslate nohighlight">\(\tau_{0}\)</span>, identifiable from the
-roll-off frequency. Only having information about the power-spectrum
-of temperature does not allow us to constrain both the variance of
-the forcing, <span class="math notranslate nohighlight">\(\sigma_{F}^{2}\)</span> \emph{and }the feedback <span class="math notranslate nohighlight">\(\lambda\)</span>,
-only their ratio.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">])</span>
@@ -603,9 +588,30 @@ only their ratio.</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$S_{TT}$&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/0093994fb2b6bf42896ef6a9c4316fb62a4d74abd5df4c4b145edb391c40091b.png" src="../../_images/0093994fb2b6bf42896ef6a9c4316fb62a4d74abd5df4c4b145edb391c40091b.png" />
+<img alt="../../_images/b80820c3f24d03985275378b81438938ee88cc568663d50e1ab80c50bb295353.png" src="../../_images/b80820c3f24d03985275378b81438938ee88cc568663d50e1ab80c50bb295353.png" />
 </div>
 </div>
+<section id="asymptotic-behaviour">
+<h3>Asymptotic behaviour<a class="headerlink" href="#asymptotic-behaviour" title="Permalink to this heading">#</a></h3>
+<p>In the limit of high frequencies (short time-scales): <span class="math notranslate nohighlight">\(\omega\gg\tau_{0}\)</span>.
+i.e. <span class="math notranslate nohighlight">\(f\gg\frac{1}{2\pi\tau_{0}}\)</span> the dominant balance in the denominator
+becomes <span class="math notranslate nohighlight">\(\omega^{2}\tau_{0}^{2}\gg1\)</span> and the power spectrum asymptomes
+to <span class="math notranslate nohighlight">\(S_{TT}\sim\frac{\tilde{s}_{F}^{2}}{\lambda^{2}\tau_{0}^{2}}\frac{1}{\omega^{2}}\)</span>
+which obbeys a power law scaling of <span class="math notranslate nohighlight">\(S_{TT}\sim f^{-2}\)</span> or <span class="math notranslate nohighlight">\(\omega^{-2}\)</span>.</p>
+<p>In the limit of low frequencies (long time-scales): <span class="math notranslate nohighlight">\(\omega\ll\tau_{0}\)</span>.
+i.e. <span class="math notranslate nohighlight">\(f\ll\frac{1}{2\pi\tau_{0}}\)</span> , the dominant balance is reversed,
+with <span class="math notranslate nohighlight">\(1\gg\omega\tau_{0}^{2}\)</span> and the spectrum asymptotes to: <span class="math notranslate nohighlight">\(S_{TT}\left(\omega\right)\sim\frac{\tilde{s}_{F}^{2}}{\lambda^{2}\tau_{0}^{2}}\)</span></p>
+<p>As you can see from the figure above there are essentially two pieces of
+information in the spectrum: the spectral density at which it tapers
+of, which gives us an estimate for <span class="math notranslate nohighlight">\(\tilde{s}_{F}^{2}/\lambda^{2}\)</span>
+and the characteristic time-scale <span class="math notranslate nohighlight">\(\tau_{0}\)</span>, identifiable from the
+roll-off frequency. Only having information about the power-spectrum
+of temperature does not allow us to constrain both the variance of
+the forcing, <span class="math notranslate nohighlight">\(\sigma_{F}^{2}\)</span> \emph{and }the feedback <span class="math notranslate nohighlight">\(\lambda\)</span>,
+only their ratio.</p>
+</section>
+<section id="power-spectrum-of-surface-heat-fluxes">
+<h3>Power Spectrum of surface heat fluxes:<a class="headerlink" href="#power-spectrum-of-surface-heat-fluxes" title="Permalink to this heading">#</a></h3>
 <p>In practice we may also have measurements of the net heat flux <span class="math notranslate nohighlight">\(Q=-\lambda T+F\)</span>.
 The spectrum of <span class="math notranslate nohighlight">\(Q\)</span> will be:</p>
 <div class="math notranslate nohighlight">
@@ -654,6 +660,7 @@ and <span class="math notranslate nohighlight">\(\sigma_{F}^{2}\)</span>.</p>
 <img alt="../../_images/f832638306442a635354c776c177edc9c2679ce70d7f82328a68de9382ac8556.png" src="../../_images/f832638306442a635354c776c177edc9c2679ce70d7f82328a68de9382ac8556.png" />
 </div>
 </div>
+</section>
 </section>
 <section id="cross-spectrum-of-the-standard-hasselmann-model">
 <h2>Cross Spectrum of the standard Hasselmann Model<a class="headerlink" href="#cross-spectrum-of-the-standard-hasselmann-model" title="Permalink to this heading">#</a></h2>
@@ -758,6 +765,10 @@ H_{QT}=\frac{S_{QT}}{S_{TT}}=\lambda_{a}\frac{i\omega\tau_{0}\tilde{s}_{F_{a}}^{
 </section>
 <section id="to-do">
 <h2>To do:<a class="headerlink" href="#to-do" title="Permalink to this heading">#</a></h2>
+<section id="numerical-check">
+<h3>Numerical Check<a class="headerlink" href="#numerical-check" title="Permalink to this heading">#</a></h3>
+<p>Check the theoretical solutions for a model with two sources of forcing numerically, and fix any errors (I expect a few sign errors at the very least).</p>
+</section>
 <section id="ocean-and-atmospheric-heat-fluxes-and-forcing">
 <h3>Ocean and atmospheric heat fluxes and forcing<a class="headerlink" href="#ocean-and-atmospheric-heat-fluxes-and-forcing" title="Permalink to this heading">#</a></h3>
 <div class="math notranslate nohighlight">
@@ -859,11 +870,15 @@ model:</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#power-spectrum-of-the-standard-hasselmann-model">Power Spectrum of the standard Hasselmann Model.</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#asymptotic-behaviour">Asymptotic behaviour</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#power-spectrum-of-the-standard-hasselmann-model">Power Spectrum of the standard Hasselmann Model.</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#asymptotic-behaviour">Asymptotic behaviour</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#power-spectrum-of-surface-heat-fluxes">Power Spectrum of surface heat fluxes:</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-spectrum-of-the-standard-hasselmann-model">Cross Spectrum of the standard Hasselmann Model</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-model-with-two-different-sources-of-forcing">A model with two different sources of forcing:</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#to-do">To do:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-check">Numerical Check</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ocean-and-atmospheric-heat-fluxes-and-forcing">Ocean and atmospheric heat fluxes and forcing</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#red-noise-ocean-process">Red noise ocean process</a></li>
 </ul>
