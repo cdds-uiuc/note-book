@@ -1,0 +1,940 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>4. Theoretical Solutions &#8212; SIMLES: Statistical Inference and Machine Learning for Earth Sciences</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/Hasselmann/4_Theory';</script>
+    <link rel="canonical" href="https://cdds-uiuc.github.io/simles-book/content/Hasselmann/4_Theory.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="3. Simulating discrete stochastic processes" href="3_Simulating_Stochastic_Processes.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/CDDS_logo.png" class="logo__image only-light" alt="SIMLES: Statistical Inference and Machine Learning for Earth Sciences - Home"/>
+    <script>document.write(`<img src="../../_static/CDDS_logo.png" class="logo__image only-dark" alt="SIMLES: Statistical Inference and Machine Learning for Earth Sciences - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    CDDS Notes
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Hasselmann Model</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1_Mathematical_Prelims.html">1. Mathematical Preliminaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_Hasselmann_model.html">2. The Hasselmann model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_Simulating_Stochastic_Processes.html">3. Simulating discrete stochastic processes</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. Theoretical Solutions</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/cdds-uiuc/note-book/master?urlpath=lab/tree/content/Hasselmann/4_Theory.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/cdds-uiuc/note-book/blob/master/content/Hasselmann/4_Theory.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/cdds-uiuc/note-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/cdds-uiuc/note-book/issues/new?title=Issue%20on%20page%20%2Fcontent/Hasselmann/4_Theory.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/content/Hasselmann/4_Theory.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>4. Theoretical Solutions</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#power-spectrum-of-the-standard-hasselmann-model">Power Spectrum of the standard Hasselmann Model.</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#asymptotic-behaviour">Asymptotic behaviour</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#power-spectrum-of-surface-heat-fluxes">Power Spectrum of surface heat fluxes:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-spectrum-of-the-standard-hasselmann-model">Cross Spectrum of the standard Hasselmann Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-model-with-two-different-sources-of-forcing">A model with two different sources of forcing:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#to-do">To do:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-check">Numerical Check</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ocean-and-atmospheric-heat-fluxes-and-forcing">Ocean and atmospheric heat fluxes and forcing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#red-noise-ocean-process">Red noise ocean process</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="theoretical-solutions">
+<h1>4. Theoretical Solutions<a class="headerlink" href="#theoretical-solutions" title="Permalink to this heading">#</a></h1>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+
+<span class="k">if</span> <span class="s1">&#39;google.colab&#39;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">get_ipython</span><span class="p">()):</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Running on CoLab, need to install multitaper&#39;</span><span class="p">)</span>
+  <span class="o">%</span><span class="k">pip</span> install multitaper
+
+<span class="kn">from</span> <span class="nn">multitaper</span> <span class="kn">import</span> <span class="n">mtspec</span>
+<span class="kn">from</span> <span class="nn">multitaper</span> <span class="kn">import</span> <span class="n">mtcross</span>
+
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;legend.fontsize&#39;</span><span class="p">:</span> <span class="s1">&#39;x-large&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;figure.figsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>
+          <span class="s1">&#39;axes.labelsize&#39;</span><span class="p">:</span> <span class="s1">&#39;x-large&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;axes.titlesize&#39;</span><span class="p">:</span><span class="s1">&#39;x-large&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;xtick.labelsize&#39;</span><span class="p">:</span><span class="s1">&#39;x-large&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;ytick.labelsize&#39;</span><span class="p">:</span><span class="s1">&#39;x-large&#39;</span><span class="p">}</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<p>We now have everythign in place to theoretically compute the spectrum
+of Hasselmann-type models.</p>
+<section id="power-spectrum-of-the-standard-hasselmann-model">
+<h2>Power Spectrum of the standard Hasselmann Model.<a class="headerlink" href="#power-spectrum-of-the-standard-hasselmann-model" title="Permalink to this heading">#</a></h2>
+<p>Let’s first solve for the theoretical spectrum of a Hasselmann model,
+and compare it with a simulation of the Hasselmann model using a time-step
+<span class="math notranslate nohighlight">\(\Delta t\)</span>. Remember, the Hasselmann model is</p>
+<div class="math notranslate nohighlight">
+\[
+C\frac{dT}{dt}=-\lambda T+F
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(F\)</span> is white noise (at least at frequencies lower than the
+sampling frequency <span class="math notranslate nohighlight">\(\left|f\right|&lt;f_{N}=1/\left(2\Delta t\right)\)</span>).</p>
+<p>The power spectrum of the Hasselmann model can be solved for by taking
+the Fourier transform of the differential equation:</p>
+<div class="math notranslate nohighlight">
+\[
+i\omega C\tilde{T}\left(\omega\right)=-\lambda\tilde{T}\left(\omega\right)+\tilde{F}\left(\omega\right)
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\tilde{T}\left(\omega\right)=\frac{\tilde{F}\left(\omega\right)}{\lambda+i\omega C}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\tilde{T}\left(\omega\right)=\frac{1}{\lambda}\frac{\tilde{F}\left(\omega\right)}{1+i\omega\tau_{0}}
+\]</div>
+<p>The spectrum can be computed as:</p>
+<div class="math notranslate nohighlight">
+\[
+S_{TT}\left(\omega\right)=\left\langle \tilde{T}\left(\omega\right)\tilde{T}\left(\omega\right)^{*}\right\rangle =\left\langle \frac{1}{\lambda}\frac{\tilde{F}\left(\omega\right)}{1+i\omega\tau_{0}}\frac{1}{\lambda}\frac{\tilde{F}^{*}\left(\omega\right)}{1-i\omega\tau_{0}}\right\rangle =\frac{1}{\lambda^{2}}\frac{\left\langle \tilde{F}\left(\omega\right)\tilde{F}^{*}\left(\omega\right)\right\rangle }{1+\omega^{2}\tau_{0}^{2}}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+S_{TT}\left(\omega\right)=\frac{S_{FF}\left(\omega\right)}{\lambda^{2}}\frac{1}{1+\omega^{2}\tau_{0}^{2}}
+\]</div>
+<p>Using the fact that a white-noise process has a constant spectral
+variance density:</p>
+<div class="math notranslate nohighlight">
+\[
+S_{FF}\left(\omega\right)=\tilde{s}_{F}^{2}
+\]</div>
+<p>we can write the spectrum of a Hasselmann model forced with white noise as:</p>
+<div class="math notranslate nohighlight">
+\[
+S_{TT}\left(\omega\right)=\frac{\tilde{s}_{F}^{2}}{\lambda^{2}}\frac{1}{1+\omega^{2}\tau_{0}^{2}}=\frac{\tilde{s}_{F}^{2}}{\lambda^{2}+\omega^{2}C^{2}}
+\]</div>
+<p>If we want to check this spectrum against a numerical simulation where
+we used a time-step of <span class="math notranslate nohighlight">\(\Delta t\)</span> and set a variance <span class="math notranslate nohighlight">\(\sigma_{F}\)</span>
+for the forcing vector <span class="math notranslate nohighlight">\(F_{n}\)</span>, we can write:</p>
+<div class="math notranslate nohighlight">
+\[
+\boxed{S_{TT}\left(\omega\right)=\frac{\sigma_{F}^{2}\Delta t}{\lambda^{2}}\frac{1}{1+\omega^{2}\tau_{0}^{2}}=\frac{\sigma_{F}^{2}\Delta t}{\lambda^{2}+\omega^{2}C{}^{2}}}
+\]</div>
+<p>Writing it in this way is also useful if, say, we want to model the spectrum
+of monthly surface temperatures as a function of the variance of monthly
+variations in surface heat flux forcing</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">])</span>
+
+<span class="c1">#physical parameters:</span>
+<span class="n">sigma_F</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+<span class="n">tau</span><span class="o">=</span><span class="mi">3</span><span class="p">;</span>
+<span class="n">l</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span>
+<span class="n">C</span><span class="o">=</span><span class="n">tau</span><span class="o">*</span><span class="n">l</span><span class="p">;</span>
+
+<span class="c1"># numerical parameters </span>
+<span class="n">dt</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">12</span>
+<span class="n">T</span><span class="o">=</span><span class="mi">500</span>
+
+<span class="c1">#compute other required variables</span>
+<span class="n">t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">dt</span><span class="p">)</span>
+<span class="n">N</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="n">phi</span><span class="o">=</span><span class="mi">1</span><span class="o">-</span><span class="p">(</span><span class="n">dt</span><span class="o">*</span><span class="n">l</span><span class="o">/</span><span class="n">C</span><span class="p">);</span>
+
+<span class="c1">#white noise forcing </span>
+<span class="n">F</span><span class="o">=</span><span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">scale</span><span class="o">=</span><span class="n">sigma_F</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
+<span class="n">eps</span><span class="o">=</span><span class="n">F</span><span class="o">*</span><span class="n">dt</span><span class="o">/</span><span class="n">C</span>
+
+<span class="c1">#integrate</span>
+<span class="n">T</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">):</span>
+    <span class="n">T</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="n">phi</span><span class="o">*</span><span class="n">T</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">eps</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+
+<span class="c1">#compute spectrum</span>
+<span class="n">out</span><span class="o">=</span><span class="n">mtspec</span><span class="o">.</span><span class="n">MTSpec</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">nw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">,</span><span class="n">kspec</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">f</span><span class="o">=</span><span class="n">out</span><span class="o">.</span><span class="n">freq</span>
+<span class="n">S_TT</span><span class="o">=</span><span class="n">out</span><span class="o">.</span><span class="n">spec</span>
+<span class="n">S_TT</span><span class="o">=</span><span class="n">S_TT</span><span class="p">[</span><span class="n">f</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">f</span><span class="o">=</span><span class="n">f</span><span class="p">[</span><span class="n">f</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1">#theory</span>
+<span class="n">S_TT_theory</span><span class="o">=</span><span class="n">sigma_F</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">dt</span><span class="o">/</span><span class="p">(</span><span class="n">l</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="p">(</span><span class="n">tau</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1">#plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span><span class="p">,</span><span class="n">S_TT</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Estimated (sample) spectrum: $\hat S_</span><span class="si">{XX}</span><span class="s1">(\omega)$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span><span class="p">,</span><span class="n">S_TT_theory</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Theory: $S_</span><span class="si">{TT}</span><span class="s1">(\omega)=\frac{\sigma_</span><span class="si">{F}</span><span class="s1">^</span><span class="si">{2}</span><span class="s1">\cdot\Delta t}{\lambda^</span><span class="si">{2}</span><span class="s1">}\frac</span><span class="si">{1}</span><span class="s1">{1+\tau_</span><span class="si">{0}</span><span class="s1">^</span><span class="si">{2}</span><span class="s1">\omega^</span><span class="si">{2}</span><span class="s1">}$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;f&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$S_</span><span class="si">{TT}</span><span class="s1">$&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$S_{TT}$&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/b80820c3f24d03985275378b81438938ee88cc568663d50e1ab80c50bb295353.png" src="../../_images/b80820c3f24d03985275378b81438938ee88cc568663d50e1ab80c50bb295353.png" />
+</div>
+</div>
+<section id="asymptotic-behaviour">
+<h3>Asymptotic behaviour<a class="headerlink" href="#asymptotic-behaviour" title="Permalink to this heading">#</a></h3>
+<p>In the limit of high frequencies (short time-scales): <span class="math notranslate nohighlight">\(\omega\gg\tau_{0}\)</span>.
+i.e. <span class="math notranslate nohighlight">\(f\gg\frac{1}{2\pi\tau_{0}}\)</span> the dominant balance in the denominator
+becomes <span class="math notranslate nohighlight">\(\omega^{2}\tau_{0}^{2}\gg1\)</span> and the power spectrum asymptomes
+to <span class="math notranslate nohighlight">\(S_{TT}\sim\frac{\tilde{s}_{F}^{2}}{\lambda^{2}\tau_{0}^{2}}\frac{1}{\omega^{2}}\)</span>
+which obbeys a power law scaling of <span class="math notranslate nohighlight">\(S_{TT}\sim f^{-2}\)</span> or <span class="math notranslate nohighlight">\(\omega^{-2}\)</span>.</p>
+<p>In the limit of low frequencies (long time-scales): <span class="math notranslate nohighlight">\(\omega\ll\tau_{0}\)</span>.
+i.e. <span class="math notranslate nohighlight">\(f\ll\frac{1}{2\pi\tau_{0}}\)</span> , the dominant balance is reversed,
+with <span class="math notranslate nohighlight">\(1\gg\omega\tau_{0}^{2}\)</span> and the spectrum asymptotes to: <span class="math notranslate nohighlight">\(S_{TT}\left(\omega\right)\sim\frac{\tilde{s}_{F}^{2}}{\lambda^{2}\tau_{0}^{2}}\)</span></p>
+<p>As you can see from the figure above there are essentially two pieces of
+information in the spectrum: the spectral density at which it tapers
+of, which gives us an estimate for <span class="math notranslate nohighlight">\(\tilde{s}_{F}^{2}/\lambda^{2}\)</span>
+and the characteristic time-scale <span class="math notranslate nohighlight">\(\tau_{0}\)</span>, identifiable from the
+roll-off frequency. Only having information about the power-spectrum
+of temperature does not allow us to constrain both the variance of
+the forcing, <span class="math notranslate nohighlight">\(\sigma_{F}^{2}\)</span> \emph{and }the feedback <span class="math notranslate nohighlight">\(\lambda\)</span>,
+only their ratio.</p>
+</section>
+<section id="power-spectrum-of-surface-heat-fluxes">
+<h3>Power Spectrum of surface heat fluxes:<a class="headerlink" href="#power-spectrum-of-surface-heat-fluxes" title="Permalink to this heading">#</a></h3>
+<p>In practice we may also have measurements of the net heat flux <span class="math notranslate nohighlight">\(Q=-\lambda T+F\)</span>.
+The spectrum of <span class="math notranslate nohighlight">\(Q\)</span> will be:</p>
+<div class="math notranslate nohighlight">
+\[
+\tilde{Q}\left(\omega\right)=-\frac{1}{1+i\omega\tau_{0}}\tilde{F}\left(\omega\right)+\tilde{F}\left(\omega\right)
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\tilde{Q}\left(\omega\right)=\frac{i\omega\tau_{0}}{1+i\omega\tau_{0}}\tilde{F}\left(\omega\right)
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+S_{QQ}\left(\omega\right)=\tilde{s}_{F}^{2}\frac{\omega^{2}\tau_{0}^{2}}{1+\omega^{2}\tau_{0}^{2}}
+\]</div>
+<p>Between the estimate of two spectra, <span class="math notranslate nohighlight">\(S_{TT}\)</span> and <span class="math notranslate nohighlight">\(S_{QQ}\)</span>, we now
+have enough pieces of information to constrain all of <span class="math notranslate nohighlight">\(\lambda,\tau_{0}\)</span>
+and <span class="math notranslate nohighlight">\(\sigma_{F}^{2}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#compute spectrum</span>
+<span class="n">Q</span><span class="o">=-</span><span class="n">l</span><span class="o">*</span><span class="n">T</span><span class="o">+</span><span class="n">F</span>
+<span class="n">out_Q</span><span class="o">=</span><span class="n">mtspec</span><span class="o">.</span><span class="n">MTSpec</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span><span class="n">nw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">,</span><span class="n">kspec</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">f</span><span class="o">=</span><span class="n">out_Q</span><span class="o">.</span><span class="n">freq</span>
+<span class="n">S_QQ</span><span class="o">=</span><span class="n">out_Q</span><span class="o">.</span><span class="n">spec</span>
+<span class="n">S_QQ</span><span class="o">=</span><span class="n">S_QQ</span><span class="p">[</span><span class="n">f</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">f</span><span class="o">=</span><span class="n">f</span><span class="p">[</span><span class="n">f</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1">#theory</span>
+<span class="n">S_QQ_theory</span><span class="o">=</span><span class="n">sigma_F</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">dt</span> <span class="o">*</span> <span class="p">((</span><span class="n">tau</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="p">(</span><span class="n">tau</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1">#plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span><span class="p">,</span><span class="n">S_QQ</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Estimated (sample) spectrum: $\hat S_</span><span class="si">{QQ}</span><span class="s1">(\omega)$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span><span class="p">,</span><span class="n">S_QQ_theory</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Theory: $S_</span><span class="si">{QQ}</span><span class="s1">(\omega)=\sigma_</span><span class="si">{F}</span><span class="s1">^</span><span class="si">{2}</span><span class="s1">\cdot\Delta t\frac{\tau_</span><span class="si">{0}</span><span class="s1">^</span><span class="si">{2}</span><span class="s1">\omega^</span><span class="si">{2}</span><span class="s1">}{1+\tau_</span><span class="si">{0}</span><span class="s1">^</span><span class="si">{2}</span><span class="s1">\omega^</span><span class="si">{2}</span><span class="s1">}$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;f&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$S_</span><span class="si">{QQ}</span><span class="s1">$&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$S_{QQ}$&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/f832638306442a635354c776c177edc9c2679ce70d7f82328a68de9382ac8556.png" src="../../_images/f832638306442a635354c776c177edc9c2679ce70d7f82328a68de9382ac8556.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="cross-spectrum-of-the-standard-hasselmann-model">
+<h2>Cross Spectrum of the standard Hasselmann Model<a class="headerlink" href="#cross-spectrum-of-the-standard-hasselmann-model" title="Permalink to this heading">#</a></h2>
+<p>We can also can estimate cross power spectral density, such as <span class="math notranslate nohighlight">\(S_{QT}\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{cases}
+C\frac{dT}{dt}=-\lambda T+F\\
+Q=-\lambda T+F
+\end{cases}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{cases}
+\tilde{T}\left(\omega\right)=\frac{1}{\lambda}\frac{1}{1+i\omega\tau_{0}}\tilde{F}\left(\omega\right)\\
+\tilde{Q}\left(\omega\right)=-\frac{1}{1+i\omega\tau_{0}}\tilde{F}\left(\omega\right)+\tilde{F}\left(\omega\right)
+\end{cases}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{cases}
+\tilde{T}\left(\omega\right)=\frac{1}{\lambda}\frac{1}{1+i\omega\tau_{0}}\tilde{F}\left(\omega\right)\\
+\tilde{Q}\left(\omega\right)=\frac{i\omega\tau_{0}}{1+i\omega\tau_{0}}\tilde{F}\left(\omega\right)
+\end{cases}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[
+S_{QT}=\left\langle QT\right\rangle =\frac{\tilde{s}_{F}^{2}}{\lambda}\frac{i\omega\tau_{0}}{1+\omega^{2}\tau_{0}^{2}}
+\]</div>
+<p>The relation between two variables is also often estimated as the
+transfer function:</p>
+<div class="math notranslate nohighlight">
+\[
+H_{QT}=\frac{S_{QT}}{S_{TT}}=\lambda i\omega\tau_{0}
+\]</div>
+</section>
+<section id="a-model-with-two-different-sources-of-forcing">
+<h2>A model with two different sources of forcing:<a class="headerlink" href="#a-model-with-two-different-sources-of-forcing" title="Permalink to this heading">#</a></h2>
+<p>Now consider a Hasselmann model with two different sources of forcing
+and feedbacks, modelling the interaction of the mixed layer with both
+the atmosphere and the ocean. For starteres, let’s assume that the
+mixed layer temperature does not feed-back onto the ocean:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{cases}
+C\frac{dT}{dt}=-\lambda_{a}T+F_{a}+F_{o} &amp; \text{mixed layer energy budget}\\
+Q_{a}=-\lambda_{a}T+F_{a} &amp; \text{atmospheric heat fluxes}
+\end{cases}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[
+\tilde{T}\left(\omega\right)=\frac{1}{\lambda_{a}}\frac{\tilde{F}_{a}\left(\omega\right)+\tilde{F}_{o}\left(\omega\right)}{1+i\omega\tau_{0}}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+S_{TT}=\left\langle \tilde{T}\left(\omega\right)\tilde{T}^{*}\left(\omega\right)\right\rangle 
+\]</div>
+<p>Using the linearity property of the angle bracket operator, the above
+equation can be written as:</p>
+<div class="math notranslate nohighlight">
+\[
+S_{TT}=\frac{1}{\lambda_{a}}\frac{\left\langle \tilde{F}_{a}\tilde{F}_{a}^{*}\right\rangle +\left\langle \tilde{F}_{a}\tilde{F}_{o}^{*}\right\rangle +\left\langle \tilde{F}_{o}\tilde{F}_{a}^{*}\right\rangle +\left\langle \tilde{F}_{o}\tilde{F}_{o}^{*}\right\rangle }{1+\omega^{2}\tau_{0}^{2}}
+\]</div>
+<p>Since <span class="math notranslate nohighlight">\(F_{a}\)</span>and <span class="math notranslate nohighlight">\(F_{o}\)</span> are assumed to be white noise and independent
+processes, <span class="math notranslate nohighlight">\(\left\langle \tilde{F}_{a}\tilde{F}_{o}^{*}\right\rangle =\left\langle \tilde{F}_{o}\tilde{F}_{a}^{*}\right\rangle =0\)</span>,
+and the equation simplifies to:</p>
+<div class="math notranslate nohighlight">
+\[
+S_{TT}=\frac{1}{\lambda_{a}}\frac{\tilde{s}_{F_{a}}^{2}+\tilde{s}_{F_{o}}^{2}}{1+\omega^{2}\tau_{0}^{2}}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+Q=-\lambda_{a}\tilde{T}\left(\omega\right)+F_{a}=-\frac{\tilde{F}_{a}\left(\omega\right)+\tilde{F}_{o}\left(\omega\right)}{1+i\omega\tau_{0}}+\tilde{F}_{a}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+=\frac{i\omega\tau_{0}\tilde{F}_{a}\left(\omega\right)-\tilde{F}_{o}\left(\omega\right)}{1+i\omega\tau_{0}}
+\]</div>
+<p>With spectrum</p>
+<div class="math notranslate nohighlight">
+\[
+S_{QQ}=\left\langle QQ^{*}\right\rangle =\frac{1}{1+\omega^{2}\tau_{0}^{2}}\frac{\omega^{2}\tau^{2}\left\langle \tilde{F}_{a}\tilde{F}_{a}^{*}\right\rangle +i\omega\tau_{0}\left\langle \tilde{F}_{a}\tilde{F}_{o}^{*}\right\rangle +i\omega\tau_{o}\left\langle \tilde{F}_{o}\tilde{F}_{a}^{*}\right\rangle +\left\langle \tilde{F}_{o}\tilde{F}_{o}^{*}\right\rangle }{1+\omega^{2}\tau_{0}^{2}}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+S_{TT}=\frac{\omega^{2}\tau_{0}^{2}\tilde{s}_{F_{a}}^{2}+\tilde{s}_{F_{o}}^{2}}{1+\omega^{2}\tau_{0}^{2}}
+\]</div>
+<p>and cross spectrum:</p>
+<div class="math notranslate nohighlight">
+\[
+S_{QT}=\left\langle QT\right\rangle =\frac{1}{\lambda_{a}}\frac{1}{1+\omega^{2}\tau_{0}^{2}}\frac{i\omega\tau_{0}\left\langle \tilde{F}_{a}\tilde{F}_{a}^{*}\right\rangle +i\omega\tau_{0}\left\langle \tilde{F}_{a}\tilde{F}_{o}^{*}\right\rangle -\left\langle \tilde{F}_{o}\tilde{F}_{a}^{*}\right\rangle -\left\langle \tilde{F}_{o}\tilde{F}_{o}^{*}\right\rangle }{1+\omega^{2}\tau_{0}^{2}}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+S_{QT}=\frac{1}{\lambda_{a}}\frac{i\omega\tau_{0}\tilde{s}_{F_{a}}^{2}-\tilde{s}_{F_{o}}^{2}}{1+\omega^{2}\tau_{0}^{2}}
+\]</div>
+<p>leading to the transfer function:</p>
+<div class="math notranslate nohighlight">
+\[
+H_{QT}=\frac{S_{QT}}{S_{TT}}=\lambda_{a}\frac{i\omega\tau_{0}\tilde{s}_{F_{a}}^{2}-\tilde{s}_{F_{o}}^{2}}{\tilde{s}_{F_{a}}^{2}+\tilde{s}_{F_{o}}^{2}}
+\]</div>
+</section>
+<section id="to-do">
+<h2>To do:<a class="headerlink" href="#to-do" title="Permalink to this heading">#</a></h2>
+<section id="numerical-check">
+<h3>Numerical Check<a class="headerlink" href="#numerical-check" title="Permalink to this heading">#</a></h3>
+<p>Check the theoretical solutions for a model with two sources of forcing numerically, and fix any errors (I expect a few sign errors at the very least).</p>
+</section>
+<section id="ocean-and-atmospheric-heat-fluxes-and-forcing">
+<h3>Ocean and atmospheric heat fluxes and forcing<a class="headerlink" href="#ocean-and-atmospheric-heat-fluxes-and-forcing" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{cases}
+C\frac{dT}{dt}=-\lambda_{a}T-\lambda_{0}T+F_{a}+F_{o} &amp; \text{mixed layer energy budget}\\
+Q_{a}=-\lambda_{a}T+F_{a} &amp; \text{atmospheric heat fluxes}\\
+Q_{o}=-\lambda_{o}T+F_{o} &amp; \text{ocean heat fluxes}
+\end{cases}
+\end{split}\]</div>
+<p>Compute the power spectra and cross-spectra:</p>
+<div class="math notranslate nohighlight">
+\[
+S_{TT},S_{Q_{a}Q_{a}},S_{Q_{o}Q_{o}},S_{Q_{o}T},S_{Q_{a}T}
+\]</div>
+<p>as a function of parameters <span class="math notranslate nohighlight">\(\theta=\left[C,\lambda_{a},\lambda_{o},\tilde{s}_{F_{a}},\tilde{s}_{F_{o}}\right]\)</span>
+. Note that since there are two feedbacks, we can no longer define
+a single characteristic time-scale <span class="math notranslate nohighlight">\(\tau_{0}\)</span>, so we should write
+these in terms of <span class="math notranslate nohighlight">\(C\)</span>.</p>
+</section>
+<section id="red-noise-ocean-process">
+<h3>Red noise ocean process<a class="headerlink" href="#red-noise-ocean-process" title="Permalink to this heading">#</a></h3>
+<p>Now let’s assume that ocean forcing is not white, but red. in other
+words,</p>
+<div class="math notranslate nohighlight">
+\[
+S_{F_{o}F_{o}}=\tilde{s}_{\eta}\frac{1}{1+\omega^{2}\tau_{1}^{2}}
+\]</div>
+<p>What are the spectra?
+$<span class="math notranslate nohighlight">\(
+S_{TT},S_{Q_{a}Q_{a}},S_{Q_{o}Q_{o}},S_{Q_{o}T},S_{Q_{a}T}
+\)</span><span class="math notranslate nohighlight">\(
+Simulate these numerically to check that the theoretical solutions
+are accurate. Try different values of \)</span>\tau_{1}<span class="math notranslate nohighlight">\( relative to \)</span>C/\lambda_{a}<span class="math notranslate nohighlight">\(
+and \)</span>C/\lambda_{o}<span class="math notranslate nohighlight">\(. Note that you will need to simulate a red noise
+forcing. You can do that by assuming that \)</span>F_{o}$ is itself a Hasselmann
+model:</p>
+<div class="math notranslate nohighlight">
+\[
+\tau\frac{dF_{o}}{dt}=-F_{o}+\eta
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\eta\)</span> is white noise.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content/Hasselmann"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="3_Simulating_Stochastic_Processes.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">3. Simulating discrete stochastic processes</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#power-spectrum-of-the-standard-hasselmann-model">Power Spectrum of the standard Hasselmann Model.</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#asymptotic-behaviour">Asymptotic behaviour</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#power-spectrum-of-surface-heat-fluxes">Power Spectrum of surface heat fluxes:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-spectrum-of-the-standard-hasselmann-model">Cross Spectrum of the standard Hasselmann Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-model-with-two-different-sources-of-forcing">A model with two different sources of forcing:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#to-do">To do:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-check">Numerical Check</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ocean-and-atmospheric-heat-fluxes-and-forcing">Ocean and atmospheric heat fluxes and forcing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#red-noise-ocean-process">Red noise ocean process</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Cristian Proistosescu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
