@@ -1,0 +1,12 @@
+# MyST build outputs
+_build/
+exports/
+
+# macOS
+.DS_Store
+
+# Claude Code agent state
+.claude/
+
+# Stale logs
+intro.log
