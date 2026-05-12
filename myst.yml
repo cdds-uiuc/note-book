@@ -16,8 +16,6 @@ project:
       provider: github
       url: https://mybinder.org
       ref: main
-  bibliography:
-    - references.bib
   exports:
     - format: pdf
       template: plain_latex_book
@@ -37,6 +35,6 @@ project:
 site:
   options:
     logo: content/CDDS_logo.png
-    favicon: content/CDDS_logo.jpeg
+    favicon: content/CDDS_logo.png
     folders: true
   template: book-theme

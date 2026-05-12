@@ -1,0 +1,16 @@
+name: note-book
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - jupyterlab
+  - ipykernel
+  - numpy
+  - scipy
+  - matplotlib
+  - nodejs
+  - pip
+  - pip:
+    - jupyter-book>=2
+    - multitaper
+    - ghp-import
