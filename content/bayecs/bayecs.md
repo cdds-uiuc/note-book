@@ -10,12 +10,14 @@ By refactoring the posterior calculation in Stan we hope to achieve two goals:
 There is only one (intentional) difference from SW20's model. Our model does not account for the correlation between historical forcing ($F_{hist}$) and the forcing associatd with a doubling of CO$_2$  $(F_{2\times CO_2})$. I tried implementing this correlation and it resulted in very small differences in the posterior  of <0.05K at all percentiles (consistent with SW20), but sacrificed code simplicity and ease of reading. 
 
 ### Colab and Github:
-This jupyterbook contains a Google colab version of the code. The colab version is not regularly updated,  and is primarily intended as a frictionless demo that does not require installing a new python environment. 
+This jupyterbook contains [a Google colab version of the code](./SherwoodWebb\_baselines\_colab.ipynb). installing a new python environment. 
 
-A Github repository for the code (which may be more up to date) can be found here [https://github.com/cdds-uiuc/bayecs](https://github.com/cdds-uiuc/bayecs)
+A Github repository for the code (which may be more up to date) can be found here:
+[https://github.com/cdds-uiuc/bayecs](https://github.com/cdds-uiuc/bayecs)
+
 
 ### More Info 
-Checkout the Readme for the overall statistical model and 
+Checkout the [Readme](./Readme.md) for the overall statistical model and 
 a few issues related to the numerical estimation of the posterior.
 
 In order to understand the underlying Bayesian framework, readers

@@ -30,8 +30,8 @@ project:
         - file: content/Hasselmann/4_Theory.ipynb
     - file: content/bayecs/bayecs.md
       children:
-        - file: content/bayecs/Readme.md
         - file: content/bayecs/SherwoodWebb_baselines_colab.ipynb
+        - file: content/bayecs/Readme.md
 site:
   options:
     logo: content/CDDS_logo.png
