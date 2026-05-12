@@ -22,7 +22,7 @@ project:
       output: exports/note-book.pdf
   toc:
     - file: intro.md
-    - file: content/Hasselmann/Hasselmann.ipynb
+    - file: content/Hasselmann/Hasselmann.md
       children:
         - file: content/Hasselmann/1_Mathematical_Prelims.ipynb
         - file: content/Hasselmann/2_Hasselmann_model.ipynb
